@@ -5,3 +5,4 @@
 	fi
 	echo copy $1 to ~/bin
 	cp ./gitcfg.sh ~/bin/
+	echo end
