@@ -1,0 +1,14 @@
+说明文档：
+如何在多台机器上使用github,并提交代码
+
+1、在本地机器上要建立一个rsa 公钥给github:
+首先在本地运行：
+ssh-keygen -t rsa -C "your email address"
+然后登录:
+https://github.com/settings/ssh
+其次：
+测试ssh -T git@github.com
+
+如果出现：
+Hi yourname(在github 注册的名字)! You've successfully 
+ authenticated, but GitHub does not provide shell access.
