@@ -1,1 +1,2 @@
+#!/bin/bash
 git push -u git@github.com:chendong2012/configs.git master
