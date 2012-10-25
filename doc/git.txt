@@ -1,0 +1,8 @@
+同步远程终端
+git pull
+
+通过$git remote show origin来得到remote中的所有branch列表
+git remote show origin
+
+加远程仓库
+git remote add origin git@xxx.com
