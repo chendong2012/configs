@@ -100,3 +100,5 @@ nmap ,mc !!boxes -d c-cmt<CR>
 let &termencoding=&encoding
 set fileencodings=utf-8,gbk
 imap zd <c-r>=strftime("20%y-%m-%d")<cr>
+au BufWinLeave * silent mkview
+au BufWinEnter * silent loadview
