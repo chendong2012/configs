@@ -17,3 +17,9 @@ git config --global color.diff.new "green bold"
 git config --global color.status.added "yellow"
 git config --global color.status.changed "green"
 git config --global color.status.untracked "cyan"
+#gitmeld是一个脚本文件
+git config --global diff.external gitmeld
+##!/bin/sh
+#meld $2 $5
+
+
