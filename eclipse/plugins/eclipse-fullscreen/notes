@@ -1,0 +1,22 @@
+下载的网址：
+http://code.google.com/p/eclipse-fullscreen/source/checkout
+svn checkout http://eclipse-fullscreen.googlecode.com/svn/trunk/ eclipse-fullscreen-read-only
+
+eclipse-fullscreen_1.0.7.zip 
+
+Eclipse Full Screen Plugin (now 1.0.7) for Eclipse 3.4
+
+With this small plugin Eclipse and RCP Programs based on Eclipse can run in full screen mode, so that you can have more space to edit your programs.
+
+see also https://www.imodeler.info
+Requirements
+
+    Eclipse 3.4 or later,
+    Java 1.3 or later. 
+
+Downloads
+http://code.google.com/p/eclipse-fullscreen/downloads/list 
+
+
+快捷键
+ctrl+alt+z

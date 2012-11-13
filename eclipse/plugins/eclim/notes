@@ -1,0 +1,47 @@
+http://eclim.org/install.html
+
+如何安装：
+
+ java -jar eclim_1.7.11.jar
+如何uninstall：
+ java -jar eclim_1.7.11.jar uninstaller
+
+
+
+Requirements
+
+Before beginning the installation, first confirm that you have met the following requirements.
+
+    Java Development Kit 1.6 or greater
+
+    Vim 7.1.x
+
+    Eclipse 4.2.x (Juno) (eclim 2.2.x) or Eclipse 3.7.x (Indigo) (eclim 1.7.x)
+
+    Mac and Linux users must also have make and gcc installed.
+
+    Minimum Vim Settings: In order for eclim to function properly, there is a minimum set of vim options that must be enabled in your vimrc file (:h vimrc).
+
+        set nocompatible
+
+        Execute :h 'compatible' for more info. You can confirm that compatibliity is turned off by executing the following:
+
+        :echo &compatible
+
+        Which should output '0'.
+
+        filetype plugin on
+
+        Execute :h filetype-plugin-on for more info. You can confirm that file type plugins are enabled by executing the following:
+
+        :filetype
+
+        Which should output 'filetype detection:ON plugin:ON indent:ON', showing at least 'ON' for 'detection' and 'plugin'.
+
+Download
+
+You can find the official eclim installer on eclim's sourceforge downloads page:
+
+    eclim_2.2.3.jar (for Eclipse 4.2.x, Juno)
+    eclim_1.7.11.jar (for Eclipse 3.7.x, Indigo)
+
