@@ -1,0 +1,6 @@
+KBUILD_FLAGS += -g
+KBUILD_ALAGS += -gdwarf-2
+KBUILD_FLAGS += -pg
+
+arm-linux-objdump -S -D a.o 
+
