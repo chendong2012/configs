@@ -1,0 +1,31 @@
+验证下载下来的软件包:
+curl https://fedoraproject.org/static/fedora.gpg | gpg --import
+现在验证 CHECKSUM 文件的有效性：
+gpg --verify-files *-CHECKSUM
+sha256sum -c *-CHECKSUM
+
+    Plug in your USB flash drive.
+    Become root:
+
+    su -
+
+    Your flash drive must have a single partition with a vfat file system. To determine how it is formatted, find the name of this partition and the device itself by running dmesg shortly after connecting the drive. The device name (similar to /dev/sdc) and the partition name (similar to /dev/sdc1) both appear in several lines towards the end of the output.
+    Use the partition name to ensure that the file system type of the USB flash drive is vfat.
+
+    # blkid partition
+
+    You should now see a message similar to:
+
+    LABEL="LIVE" UUID="6676-27D3" TYPE="vfat"
+
+    If TYPE is anything other than vfat (for example, TYPE="iso9660"), clear the first blocks of the USB flash drive:
+
+    # dd if=/dev/zero of=partition bs=1M count=100
+
+    Use the dd command to transfer the boot ISO image to the USB device:
+
+    # dd if=path/image_name.iso of=device
+
+    where path/image_name.iso is the boot ISO image file that you downloaded and device is the device name for the USB flash drive. Ensure you specify the device name, not the partition name. For example:
+
+    # dd if=~/Download/Fedora-17-x86_64-DVD.iso of=/dev/sdc
