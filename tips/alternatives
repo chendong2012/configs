@@ -1,0 +1,21 @@
+替换选择(alternatives)的版本 1.3.44 - 版权 (C) 1997-2000 Red Hat, Inc.
+在 GNU 公共许可的条款下，本软件可以被自由发行。
+
+用法：alternatives --install <link> <name> <path> <priority>
+                    [--initscript <service>]
+                    [--slave <link> <name> <path>]*
+       alternatives --remove <name> <path>
+       alternatives --auto <name>
+       alternatives --config <name>
+       alternatives --display <name>
+       alternatives --set <name> <path>
+
+公用选项：--verbose --test --help --usage --version
+                --altdir <directory> --admindir <directory>
+
+
+#example:
+安装
+alternatives --install /usr/bin/javac javac /opt/third/jdk1.6.0_31/bin/java
+选择配置
+alternatives --config javac
