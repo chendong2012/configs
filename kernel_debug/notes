@@ -4,3 +4,7 @@ KBUILD_FLAGS += -pg
 
 arm-linux-objdump -S -D a.o 
 
+
+kernel trace articles
+http://www.cnblogs.com/leaven/archive/2011/12/22/2298352.html
+http://blog.csdn.net/sandflee/article/details/5751844
