@@ -1,0 +1,6 @@
+set time_inc=250
+set sendmail="/usr/bin/msmtp"
+set use_from=yes
+set realname="chend"
+set from=chend@gionee.com
+set envelope_from=yes

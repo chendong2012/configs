@@ -1,0 +1,8 @@
+如何实现文本发EMAIL
+方法：
+echo 内容 | mutt -s 主题 chend@gionee.com
+
+利用mutt作为编辑器，然后用msmtp作为发送器进行发送。
+主要的配置文件：
+.msmrc
+.msmtprc
