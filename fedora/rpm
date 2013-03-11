@@ -1,0 +1,1 @@
+rpm2cpio oracle-instantclient11.2-basic-11.2.0.2.0.i386.rpm | cpio -div

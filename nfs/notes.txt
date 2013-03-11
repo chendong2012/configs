@@ -1,0 +1,369 @@
+
+http://blog.csdn.net/yangjiehuan/article/details/7556720
+
+
+/etc/exports 
+相关命令：rpcinfo -p [IPADD]:查看服务器提供的rpc服务
+showmount -e:查看服务共享的目录
+rpcinfo -p 18.8.8.37
+
+cat /var/lib/nfs/rmtab 写了相关信息
+/var/lib/nfs
+nfsstat
+
+
+Server端：
+1./etc/exports格式：
+            目录                     选项            
+例：共享/share目录给192.168.0.x的用户
+           /share                192.168.0.0/24 (rw)  
+2.启动portmap服务：                                    
+    service portmap start[restart]                     
+3.启动NFS服务：
+    service nfs start[restart]                         
+Client端
+1.启动portmap服务：                                    
+    service portmap start[restart]                     
+2.挂载服务器端的共享目录(假设服务器端192.168.0.1)：   
+    mount -t nfs 192.168.0.1:/share  /mnt/localshare   
+nfs配置
+发表：2004-6-10 13:09:22 出处：
+你的博客网(yourblog.org)
+
+1. 查看系統有沒有nfs功能
+cat /proc/filesystes
+2. ntsysv 命令選中nfs
+service nfs restart,看能否啟動,如不能正常,可以查看相應的出錯信息
+tali /var/log/messages
+3. 配置/etc/exports
+eg: /home/mis    *(rw)
+此文件是配置相關的文件和一些權限,上面的設置表示,所有的用戶對/home/mis都有讀寫的權限
+4. 執行exportfs -a 表示將所有的更新.
+5. service nfs restart
+6. 執行mount命令
+eg: mount 10.0.1.153:/home/mis  /mnt/mis
+7. 常用的命令
+showmount
+repcinfo
+8. 如果在開機時就加載,可在/etc/fstab中加入
+ip:/home.mis   /mnt/mis nfs intr
+
+Linux下NFS网络文件系统设定及管理
+      05/08/02 08:52 PM
+
+Edit   
+
+Reply   
+
+Quote   
+http://www.linuxcenter.com.tw/ 作者：Juili Chiu (2001-06-07 11:00:01)
+简介：
+NFS 最初是由 Sun Microsytem 公司於 1984 年所开发出来的，最主要的功能就是让网路上的 UNIX 电脑可以共享目录及档案。我们可以将远端所分享出来的档案系统，挂载 (mount) 在本地端的系统上，然後就可以很方便的使用远端的档案，而操作起来就像在本地操作一样，不会感到有甚麽不同。而使用 NFS 也有相当多的好处，例如档案可以集中管理，节省磁碟空间......等等。
+安装 NFS：
+大部份的 Linux Distribution 安装时都会将 NFS 安装上去，在 OpenLinux 上，NFS 由两个 RPM 套件所组成，分别为 nfs 及 nfs-server，nfs 主要包括一些 client 端所需要的程式，而 nfs-server 主要是 NFS Server 的一些 daemon 程式。
+设定 NFS：
+设定档：/etc/exports
+设定档格式：档案系统 [主机][选项]
+例：
+/ charlie(ro) john(rw,no_root_squash)
+/tmp pc*.col.com.tw(rw) 172.29.0.0/255.255.0.0(ro)
+/pub (ro)
+/pub/private (noaccess)
+选项说明：
+ro read only
+rw read write
+no_root_squash 信任客户端，对应 UID
+noaccess 客户端不能使用
+启动及结束 NFS 的服务：
+设定档更改後，一定要记得重新启动 NFS 的服务，启动及停止的方式如下：
+# /etc/rc.d/init.d/nfs [ start | stop | restart | reload ]
+start 启动 NFS 服务
+stop 停止 NFS 服务
+restart 停止并重新启动 NFS 服务
+reload 重新载入 NFS 设定值
+客户端使用 NFS：
+1.查看 NFS 的服务：
+client 要查看 Server 有提供哪些 NFS 服务，可以使用 showmount 这个指令。
+# showmount -e 可看有分享哪些目录
+# showmount -a 可看出所有的 mount
+2.连接 NFS Server：
+要使用 NFS server 上的资源，使用 mount 指令就可以了。
+# mount -t nfs hostname:/shared_dir
+例：
+# mount -t nfs 192.168.1.100:/tmp /mnt/nfs
+3.开机时自动连上 NFS：
+如果希望开机的时候，系统就自动挂载 NSF，则需要编辑 /etc/fstab 档。
+例：
+192.168.1.100:/tmp /mnt/nfs nfs defaults 0 0
+
+
+8.启动服务portmap,nfs
+#/etc/rc.d/init.d/portmap start  (or:#service portmap start)
+#/etc/rc.d/init.d/nfs start   (or:#service nfs start)
+可以到/var/log/messages里面查看是否正确激活
+9.exportfs的用法
+如果我们修改了/etc/exports后，并不需要重启nfs服务，只要用exportfs重新扫描一次/etc/exports，并且重新加载即可
+语法: exportfs [-aruv]
+-a: 全部挂载(或卸载) /etc/exports档案内的设定
+-r: 重新挂载/etc/exports里面的设定，也同步的更新/etc/exports和/var/lib/nfs/xtab里面的内容
+-u:卸载某一目录
+-v:在export的时候，将分享的目录显示到荧屏上.
+例子
+#exportfs -rv //重新export一次
+#exportfs -au //全部卸载
+10./var/lib/nfs/xtab里面可以查看每个目录的分享权限(但是我怎么也没有找到，靠,找到了，原来要有人mount上nfs后才会出现内容)，如:
+/tmp    node3(ro,sync,wdelay,hide,secure,root_squash,no_all_squash,subtree_check,secure_locks,mapping=identity,anonuid=-2,anongid=-2)
+为什么anonuid=-2呢？呵呵！其实它说的是将 65536 - 2 的值，也就是 65534 的那个 UID 啦！对照一下 /etc/passwd ，你就会发现，哇！原来那就是 nobody 的啦
+11.showmount命令
+语法: showmount [-ae] hostname
+-a: 显示目前主机与client所连上来的使用目录的状态
+-e: 显示hostname的/etc/exports里面共享的目录
+12.查看激活的portnumber
+#netstat -utln
+nfs 自己所开启的 port ，就是那个 2049 的 port 啦！就是 NFS 主要产生的 port NFS server 在前面我们就提过了，他是 RPC server 的一种，而 NFS 由于提供了多个 program ( 例如 rpc.mountd, rpc.rquotad, rpc.nfsd... ) ，因此就需要激活多个 port 了！而且这些 port 是『随机产生的』，也就是那个 port number 不会是固定的啦！每次 restart nfs 都会得到不一样的 port number 呢！那么 Client 端怎么知道要连接上那个 port 来呼叫需要的 program 呢？呵呵！那就是 sunrpc ( port 111 ) 那个 portmap 服务所产生的 port number 的功用啦！Client 会先连接到 sunrpc 那个 port 去知道应该到那个 port 去呼叫所需要的程序！所以啰， rpc.xxxx 等之类的 daemon 自然就不需要有固定的 port number 啰！
+***********************************************
+NFS客户端的设定
+#mount -t nfs hostname(orIP):/directory /mountpoint   搞定，就这么简单
+为了担心会不小心将 NFS 端挂进来的具有 SUID 权限档案的程序执行，root可以将NFS 所分享的目录以较为安全的情况挂载进来，可以
+#mount -t nfs -o nosuid,ro hostname:/directory /mountponit
+可能出问题的地方:
+1.权限的设定不符合
+2.忘记了激活portmap,此时会报错:
+mount: RPC: Port mapper failure - RPC: Unable to receive 或者
+mount: RPC: Program not registered
+那么，启动portmap，并且重新启动nfs
+#service portmap start
+#service nfs restart
+3.被防火墙搞掉
+重新设置防火墙,包括iptables与TCP_Wrappers,因为激活了portmap，所以port 111必须提供出去.因此在iptables rules中，要增加:
+iptables -A INPUT -p TCP --dport 111 -j ACCEPT
+iptables -A INPUT -p UDP --dport 111 -j ACCEPT
+如果还不行，那就是TCP_Wrappers的问题，检查/etc/hosts.deny，如果有一行是:
+  ALL: ALL: deny
+那就必须在/etc/hosts.allow中增加:
+  portmap: ALL: allow
+如果我们的NFS针对内部网络开发，对于外部网络只对学术网络开发(140.0.0.0/8)，可以:
+  iptables -A INPUT -i eth0 -p TCP -s 192.168.0.0/24 --dport 111 -j ACCEPT
+  iptables -A INPUT -i eth0 -p UDP -s 192.168.0.0/24 --dport 111 -j ACCEPT
+  iptables -A INPUT -i eth0 -p TCP -s 140.0.0.0/8 --dport 111 -j ACCEPT
+  iptables -A INPUT -i eth0 -p UDP -s 140.0.0.0/8 --dport 111 -j ACCEPT
+还可以使用TCP_Wrappers，在/etc/hosts.allow里面规定连上 NFS 主机的主机 IP 与名称，例如
+#vi /.etc/hosts.allow
+portmap: 192.168.0.0/255.255.255.0 :allow
+portmap: 140.113.23.23    :allow
+portmap: .sdu.edu.cn    :allow
+
+RPC Server的相关命令
+rpcinfo
+#rpcinfo -p hostname(orIP)
+
+要注意的问题:
+需要注意的是，由于 NFS 使用的这个 RPC 在 client 端连上主机时，那么你的主机想要关机，那可就会成为『不可能的任务』！我还不知道正确的原因是什么，但是，如果你的 Server 上面还有 Client 在联机，那么你要关机，可能得要等到数个钟头才能够正常的关机成功！嗄！真的假的！不相信吗？不然您自个儿试试看！ ^_^！所以啰，建议您的 NFS Server 想要关机之前，能更先『关掉 portmap 与 nfs 』这两个东西！如果无法正确的将这两个 daemons 关掉，那么先以 netstat -utlp 找出 PID ，然后以 kill 将他关掉先！这样才有办法正常的关机成功喔！这个请特别特别的注意呢！
+
+在TurboLinux8.0 for AMD64 (kernel 2.4.21-4smp),mount NFS时候报错为:
+  portmap: server localhost not responding, timed out
+解决办法:
+  mount -t nfs -o nolock node1:/public /public
+即增加-o nolock参数,原因:
+Unfsd doesn't support NLM locking, and it's causing the lockd daemon to be started (which again requires the portmapper to be installed etc.)
+
+
+
+构建Linux上的NFS服务器（1）
+文章来源： 开放系统世界
+2003-11-29 11:01:29
+
+　　NFS是网络文件系统（Netwo
+种网络上共享和装配远程文件系
+RFC1813）。其最大的功能就是
+做是一个文件服务器（见图1所
+方法。
+rk File System）的简称，是分布式
+统。NFS由Sun公司开发，目前已经成
+可以通过网络，让不同操作系统的计
+示）。NFS提供了除Samba之外，Wind
+计算系统的一个组成部分，可实现在异
+为文件服务的一种标准（RFC1904，
+算机可以共享数据，所以也可以将它看
+ows与Linux及Unix与Linux之间通信的
+　　
+
+　　图1 NFS Server和Client PC示意图                                      
+　　Client端PC可以挂载NFS Se
+，可以使用cp、cd、mv、rm、df
+传送或者其它相关讯息传递的时
+Call, RPC)的协议来协助NFS Se
+rver所提供的目录，并且挂载之后这
+等磁盘相关的指令。NFS有属于自己
+候，NFS Server使用的则是一个称为
+rver本身的运作。
+个目录看起来就像本地的磁盘分区一样
+的协议与使用的端口号码，但是在资料
+远程过程调用(Remote Procedure
+　　NFS本身的服务并没有提供
+它相关的传输协议，而这些传输
+一个RPC Server。需要说明的是
+样Server端和Client端才能根据
+资料传递的协议，但是它却能进行文
+的协议就是远程过程调用(Remote Pr
+，要挂载NFS Server的Client PC主
+远程过程调用协议进行数据共享。
+件的共享。原因就是NFS使用到一些其
+ocedure Call, RPC)。NFS也可以视为
+机，也需要同步启动远程过程调用。这
+　　使用NFS Server需要启动至少两个daemons（
+的问题，另一个管理登入主机后的Client PC能够
+系统守护进程），一个用来管理Client PC是否可以登入
+使用的文件权限。说明如下：
+　　◆ rpc.nfsd 它的主要的功能就是管理Client
+端PC登入主机的权限，其中包含这个登入者的ID的判别。
+　　◆ rpc.mountd 它的主要功
+，在使用NFS Server提供的文件
+Client端PC的权限。
+能是管理NFS的文件系统。当Client
+前，还必须取得使用权限的认证。程
+PC顺利地通过rpc.nfsd而登入主机之后
+序会读NFS的/etc/exports来比对
+　　要激活NFS必须要有两个系统服务才行，它们
+RPC Server，要激活任何一个RPC Server之前，需
+portmap这个服务所负责的。nfs-utils就是提供rp
+文件等的系统服务。
+分别是portmap和nfs-utils。NFS其实可以被视为一个
+要做好端口的对应 (Mapping)工作才行。这个工作就是
+c.nfsd及rpc.mountd这两个NFS daemons与其它相关说明
+　　NFS Server端的设定
+　　NFS Server端的设定,首先
+或主机名称以及共享出去的目录
+需要确认Linux主机是否可以支持NFS
+权限。
+这项服务，然后再设定使用者的来源IP
+　　那么，在Client PC怎么使
+使用的 NFS目录。如果有就将它
+用这个共享出来的目录呢？首先以sh
+mount在本机上面，这样就可以使用N
+owmount检查Linux Server是否有可以
+FS Server主机提供的资源了。
+　　1．系统要求
+　　除了前面已经提到的两个系
+此外，如果重新编译过内核，一
+统守护进程portmap与nfs-utils之外
+定要选择支持NFS。
+，内核(Kernel)版本最好高于2.2.18。
+　　2．etc/exports
+　　编辑 /etc/exports文件：                                                      
+　　# vi /etc/exports                                                        
+　　/usr/src/sys -maproot=daemon host2                     
+　　/usr/ports -ro -network 192.168.1.0                    
+　　从上面这个例子中可以看出exports文件的格
+而不能使用符号连接。后面就是对这个目录进行访
+/usr/sys/src目录共享出去，但限制客户机上的ro
+root用户拥有这个服务器上的root权力进行非法操
+共享这个/usr/sys/src目录；第三行设置共享了/u
+192.168.1.0网络上的计算机才能访问这个共享目
+式，首先是定义要共享的文件目录，必须使用绝对路径，
+问限制的参数，用于保证安全性。第一行设置中，将
+ot用户等价于本机上的daemon用户，以避免客户机上的
+作；此后的host2参数是主机名，这就限制只有host2才能
+sr/ports目录，但限制为只允许读取，并且也只有
+录。
+　　◆ rw 可擦写的权限。                                                                  
+　　◆ ro 只读的权限。                                                                    
+　　◆ no_root_squash 当登入NFS主机使用共享
+被转换成为匿名使用者，通常它的UID与GID都会变
+之目录的使用者如果是root时，那么这个使用者的权限将
+成nobody身份。
+　　◆ root_squash 登入NFS主
+就具有 root的权限。
+机使用共享目录的使用者，如果是ro
+ot，那么对于这个共享的目录来说，它
+　　◆ all_squash 不论登入NF
+nobody。
+S使用者的身份为何，它的身份都会
+被转换成为匿名使用者，通常也就是
+　　◆ anonuid 通常为nobody，当然也可以自行
+设定这个UID的值，UID必须存在于/etc/passwd当中。
+　　◆ anongid 同anonuid，但是变成group ID就是了。                    
+　　◆ sync 资料同步写入到内存与硬盘当中。                                             
+　　◆ async 资料会先暂存于内存当中，而非直接写入硬盘。                                
+　　3．激活服务portmap和nfsd
+　　# /etc/rc.d/init.d/portmap start                        
+　　# /etc/rc.d/init.d/nfs start                                
+　　portmap激活之后，就会出
+统守护进程，然后就开始监听Cl
+现一个端口号为111的sunrpc的服务
+ient PC的需求，用cat/var/log/mes
+。至于nfs则会激活至少两个以上的系
+sages可以看到操作是否成功：
+　　#cat /var/log/messages                                             
+　　Nov 16 15:04:45 cao port
+map: portmap startup succeeded
+　　Nov 16 15:04:53 cao nfs: Starting NFS se
+rvices: succeeded
+　　Nov 16 15:04:54 cao nfs:
+rpc.rquotad startup succeeded
+　　Nov 16 15:04:54 cao nfs: rpc.mountd star
+tup succeeded
+　　Nov 16 15:04:54 cao nfs:
+rpc.nfsd startup succeeded
+4.exportfs
+如果修改了/etc/exports这个文件后，不需要重新激活nfs，只要重新扫瞄一次/etc/exports的文件，并且重新将设定加载即可：
+# exportfs [-aruv]
+参数说明：
+-a 全部挂载(或卸载) /etc/exports 文件内的设定 。
+-r 重新挂载/etc/exports里的设定，此外，亦同步更新/etc/exports及/var/lib/nfs/xtab的内容。
+-u 卸载某一目录。
+-v 在export的时候，将共享的目录显示到屏幕上。
+5．检验目录/var/lib/nfs/xtab
+检验所共享的目录内容，查看/var/lib/nfs/xtab这个文件：
+# vi /var/lib/nfs/xtab
+/home/cao  192.168.0.1(rw,sync,wdelay,hide,secure,root_squash,
+no_all_squash,subtree_check,secure_locks, mapping=identity,anonuid=-2,
+anongid=-2)
+这就是/home/cao这个共享出去的目录预设NFS里面的属性。
+6．showmount
+# showmount [-ae] hostname
+参数说明：
+-a 在屏幕上显示目前主机与Client所连上来的使用目录状态 。
+-e 显示hostname这部机器的/etc/exports里面的共享目录。
+当要扫瞄某一主机所提供的NFS共享的目录时，就使用showmount -e IP(或主机名称hostname)即可。
+7.观察激活的端口号
+# netstat -utln  
+Active Internet connections (only SERVERs)
+Proto Recv-Q Send-Q Local Address     Foreign Address         State
+tcp        0      0 0.0.0.0:111     0.0.0.0:*               LISTEN
+nfs所开启的端口是2049，其它的端口是RPC Server其它程序（例如rpc.mountd、rpc.rquotad、rpc.nfsd... ）随机产生的，也就是端口号不会是固定的，每次restart nfs都会得到不一样的端口号。
+
+8. 停止NFS服务
+# /etc/rc.d/init.d/portmap stop
+Client端PC的设定
+1.扫瞄可以使用的NFS Server目录
+在Client本地端建立mount point，使用mount将远程主机共享的目录挂载进来。假设主机名称是www.cao.net，使用showmount查看NFS Server可以共享的目录。然后将/home/public挂载在 /home/nfs/public下：
+# showmount -e www.cao.net
+Export list for localhost:
+/tmp         *
+/home/linux  *.cao.net
+/home/public (everyone)
+/home/cao   192.168.0.1
+2.挂载/home/public目录
+首先建立这个目录，然后再利用mount指令来挂载/home/public目录：
+# mkdir -p /home/nfs/public  
+# mount -t nfs CAO.linux.org:/home/public /home/nfs/public
+挂载的格式：
+# mount -t nfs hostname(orIP):/directory/mount/point
+# df
+Filesystem           1K-blocks      Used Available Use% Mounted on
+/dev/hda1   1904920   1235380    572776  68% /
+/dev/hdb1   976344    115212    810736  13% /backup
+www.cao.net:/home/public     1904920   1235376    572776  69% /home/nfs/public
+将资料挂载进来后，只要进入/home/nfs/public目录，就等于到了www.cao.net那部NFS Server的/home/public 目录中。
+3.卸载使用umount
+# umount /home/nfs/public
+关机时如果NFS Server上面还有Client联机，建议NFS Server关机之前，要先关掉portmap与nfs这两个系统服务。如果无法正确地将这两个系统服务关掉，那么先以netstat -utlp找出PID，然后使用kill杀掉进程，这样才能正常关机。
+安全建议
+为了保障网络安全，在使用NFS时最好结合TCP_Wrappers来限制使用范围（如果只希望192.168.5.120 这个C地址，以及IP地址为192.168.5.123的主机挂载我的NFS Server）:
+# vi /etc/hosts.allow
+portmap: 192.168.5.120/255.255.255.248 : allow
+portmap: 192.168.5.123              : allow
+# vi /etc/hosts.deny
+portmap: ALL : deny
+除了使用TCP_Wrappers之外，还可以使用iptables防火墙、/etc/exports权限设定来保障安全。 
