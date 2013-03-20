@@ -1,0 +1,5 @@
+#!/bin/bash
+sshfs chend@18.8.8.37:/media/disk6/chend  /media/250 -o sshfs_sync -o default_permissions,allow_other,kernel_cache,hard_remove
+
+sshfs chend@18.8.8.37:/home/public/ftp_root/drvbuild/WBW5882  /media/ftp -o sshfs_sync -o default_permissions,allow_other,kernel_cache,hard_remove
+sshfs chend@18.8.8.37:/home/chend  /media/250home -o sshfs_sync -o default_permissions,allow_other,kernel_cache,hard_remove
