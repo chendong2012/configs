@@ -1,0 +1,36 @@
+1、
+<IfModule mod_userdir.c>
+    UserDir disabled
+    UserDir enabled chendong
+    UserDir test
+</IfModule>
+
+<Directory /home/*/test>
+    AllowOverride FileInfo AuthConfig Limit
+    Options MultiViews Indexes SymLinksIfOwnerMatch IncludesNoExec
+    <Limit GET POST OPTIONS>
+        Order allow,deny
+        Allow from all
+    </Limit>
+    <LimitExcept GET POST OPTIONS>
+        Order deny,allow
+        Deny from all
+    </LimitExcept>
+</Directory>
+
+2、
+	chmod 711 ~
+	cd ～
+	mkdir test
+	chmod 755 test
+
+3、如何访问:
+	http://192.168.1.105:8080/~chendong/
+
+4、注意要注意下防火墙:
+	把8080 端口打开
+	iptables -I INPUT -p tcp --DPORT 8080 -J ACCEPT
+
+5、要注意selinux
+	chron -R -t httpd_user_content_t chendong/
+	ll -Z
