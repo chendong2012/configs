@@ -1,0 +1,15 @@
+#portmap  
+/sbin/iptables -A INPUT -s 192.168.1.0/24 -p tcp --dport 111 -j ACCEPT  
+/sbin/iptables -A INPUT -s 192.168.1.0/24 -p udp --dport 111 -j ACCEPT  
+#nfsd  
+/sbin/iptables -A INPUT -s 192.168.1.0/24 -p tcp --dport 2049 -j ACCEPT  
+/sbin/iptables -A INPUT -s 192.168.1.0/24 -p udp --dport 2049 -j ACCEPT  
+#mountd  
+/sbin/iptables -A INPUT -s 192.168.1.0/24 -p tcp --dport 1011 -j ACCEPT  
+/sbin/iptables -A INPUT -s 192.168.1.0/24 -p udp --dport 1011 -j ACCEPT  
+#rquotad  
+/sbin/iptables -A INPUT -s 192.168.1.0/24 -p tcp --dport 1012 -j ACCEPT  
+/sbin/iptables -A INPUT -s 192.168.1.0/24 -p udp --dport 1012 -j ACCEPT  
+#rpc.statd  
+/sbin/iptables -A INPUT -s 192.168.1.0/24 -p tcp --dport 32768 -j ACCEPT  
+/sbin/iptables -A INPUT -s 192.168.1.0/24 -p udp --dport 32768 -j ACCEPT 
