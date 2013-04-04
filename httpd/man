@@ -1,1 +1,40 @@
 http://www.php100.com/manual/apache2/mod/mod_userdir.html
+有关在系统中，自动使能httpd服务失败的原因分析：
+Listen 192.168.1.105:8080
+#Listen 8080
+在启动中，因为是采用DHCP服务器分配地址到本机，而此时还没有分配到这个地址，
+导致listen失败
+所以，最后改成：
+Listen 8080
+因为这个问题，一开始是怀疑systemctl的问题。为什么执行了：
+systemctl enable httpd.service，还是不行，
+最后进行分析发现，在系统后，我运行:
+systemctl status httpd.service
+发现是加载的时候失败了。（开机的时候有执行,通过观察输出信息可以知道
+enable的动作，只不过是失败了）
+但是为什么失败，还是没有找到，于是通过另一种方法去查找：
+因为有一个rc.local.service
+在启动这个服务的时候，你可以自定义脚本文件，所以我就在脚本文件（/etc/rc.d/rc.local）,
+里面加上/bin/httpd -k start > /home/chendong/httpd.txt 2>&1
+看是什么错误。最终把问题给定位出来了。
+
+===========================
+提示警告的原因：
+httpd: Could not reliably determine the server's fully qualified domain name, using localhost.localdomain for ServerName
+这个问题就是要设置
+ServerName 192.168.1.105:8080
+
+#
+# ServerName gives the name and port that the server uses to identify itself.
+# This can often be determined automatically, but we recommend you specify
+# it explicitly to prevent problems during startup.
+#
+# If this is not set to valid DNS name for your host, server-generated
+# redirections will not work.  See also the UseCanonicalName directive.
+#
+# If your host doesn't have a registered DNS name, enter its IP address here.
+# You will have to access it by its address anyway, and this will make 
+# redirections work in a sensible way.
+#
+#ServerName www.example.com:80
+ServerName 192.168.1.105:8080
