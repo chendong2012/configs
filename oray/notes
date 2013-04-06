@@ -1,0 +1,81 @@
+1、使用花生壳要注意的地方：
+2、路由器的设置也很重要
+	a、进入路由器的转发规节：
+		ID 	服务端口 	IP地址 	协议 	状态 	编辑
+		1	8080	192.168.1.105	ALL	生效	编辑 删除
+		2	22	192.168.1.105	ALL	生效	编辑 删除
+		3	8888	192.168.1.105	ALL	生效	编辑 删除
+
+	b、动态DNS 的设置:
+		本页设置“Oray.com花生壳DDNS”的参数。
+		服务商链接：花生壳动态域名解析服务申请   花生壳动态域名解析服务帮助
+		服务提供者： 	 注册...
+		用户名： 	
+		密 码： 	
+		启用DDNS：	
+		连接状态：	
+		连接成功
+		服务类型：	
+		标准服务
+		域名信息：	 
+		1: xxx.gicp.net
+		2: yyy.xicp.net
+		3: zzz.eicp.net
+		注意：	您成功登录之后，需要先退出才能使用其他帐号登录。
+
+3、相关的配置文件：
+	当编译好源码后，此时会发现在src目录生成: phddns
+	运行这个应用文件：sudo ./phddns
+	进行配置，此时要输入相关信息
+	
+3、   先要下载代码，并编译：
+#!/bin/bash
+SOURCEDIR=/opt/source
+ORAYDIR=oray
+#########################################################
+#(这个版本要确认是否有最新版本)
+sw=phddns-2.0.5.19225.tar.gz 
+swpath=phddns-2.0.5.19225
+#########################################################
+cd ${SOURCEDIR}/${ORAYDIR}
+echo "go to ${SOURCEDIR}/${ORAYDIR}"
+case "$1" in 
+download)
+	wget http://download.oray.com/peanuthull/$sw
+	;;
+compile)
+	tar xzvf $sw
+	cd $swpath
+	aclocal
+	autoconf
+	automake
+	./configure
+	make
+	;;
+run)
+	echo "花生壳运行在后端"
+	phddns -c /etc/phlinux.conf -d
+	;;
+log)
+	echo "查看log信息"
+	tail /var/log/phddns.log
+	;;
+document)
+	echo "看文档:/opt/source/oray/document"
+	;;
+remove)
+	rm -rf *
+	;;
+help)
+	echo "oray download"
+	echo "oray compile"
+	echo "oray run"
+	echo "oray log"
+	echo "oray remove"
+	echo "oray help"
+	;;
+*)
+	echo "???"
+	;;
+esac
+echo "end"	
