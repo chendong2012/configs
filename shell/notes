@@ -21,3 +21,8 @@ shell 里面的的()表示的意思是什么？
        or
               `command`
 
+#!/bin/sh
+arr=(9 3 8 678 a 6 1 c 7 b)
+a=(`for val in ${arr[*]}; do echo "$val"; done  | sed 's/^6/yy/'`)
+echo "${a[*]}"
+通过这条语句，相当于是对一个文件内容进行各种操作
