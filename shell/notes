@@ -1,0 +1,17 @@
+shell 数组的复制方法：
+1、newarray=(`echo ${oldarray[*]}`)
+2、直接用for
+
+sed 如果在命令中使用外部外量要加上双引号
+shell 函数的return 只有数字返回，没有字符串返回，那么要返回字
+	符串，要用echo 命令去实现
+sed 如果要执行多个命令，那么有;号隔开。
+sed 'a;b;c;d'
+
+
+echo abc | sed 's/a/3/'
+
+
+
+shell 里面的的()表示的意思是什么？
+表示在子shell 里面去执行
