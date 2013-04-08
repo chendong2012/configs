@@ -1,0 +1,64 @@
+Linux下调节CPU使用的几种方法
+2010 年 11 月 27 日 ldy 没有评论
+
+taskset nice renice ulimit nginx worker_cpu_affinity
+
+一，使用taskset充分利用多核cpu，让cpu的使用率均衡到每个cpu上
+
+#taskset
+-p,    设定一个已存在的pid，而不是重新开启一个新任务
+-c,    指定一个处理，可以指定多个，以逗号分隔，也可指定范围，如：2,4,5,6-8。
+
+1，切换某个进程到指定的cpu上
+taskset -cp 3 13290
+
+2，让某程序运行在指定的cpu上
+taskset -c 1,2,4-7 tar jcf test.tar.gz test
+
+需要注意的是，taskset -cp 3 13290在设定一个已经存在的pid时，子进程并不会继承父进程的，
+因此像tar zcf xxx.tar.gz xxx这样的命令，最好在启动时指定cpu，如果在已经启动的情况下，则需要指定tar调用的gzip进程。
+
+二，使用nice和renice设置程序执行的优先级
+格式：nice [-n 数值] 命令
+
+nice 指令可以改变程序执行的优先权等级。指令让使用者在执行程序时，指定一个优先等级，称之为 nice 值。
+这个数值从最高优先级的-20到最低优先级的19。负数值只有 root 才有权力使。
+一般使用者，也可使用 nice 指令來做执行程序的优先级管理，但只能将nice值越调越高。
+
+可以通过二种方式来给某个程序设定nice值：
+1，开始执行程序时给定一个nice值，用nice命令
+2，调整某个运行中程序的PID的nice值，用renice命令
+通常通过调高nice值来备份，为的是不占用非常多的系统资源。
+
+例：
+nice -n 10 tar zcf test.tar.gz test
+
+由nice启动的程序，其子进程会继承父进程的nice值。
+
+查看nice值
+# nice -n -6 vim test.txt &
+# ps -l
+F S   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+4 S     0 19427  2637  0  75   0 – 16551 wait   pts/6    00:00:00 bash
+4 T     0 21654 19427  0  71  -6 – 23464 finish pts/6    00:00:00 vim
+
+renice调整运行中程序的nice值
+格式：renice [nice值] PID
+
+三，使用ulimit限制cpu占用时间
+注意，ulimit 限制的是当前shell进程以及其派生的子进程。因此可以在脚本中调用ulimit来限制cpu使用时间。
+例如，限制tar的cpu占用时间，单位秒。
+# cat limit_cpu.sh
+ulimit -SHt 100
+tar test.tar.gz test
+
+如果tar占用时间超过了100秒，tar将会退出，这可能会导致打包不完全，因此不推荐使用ulimit对cpu占用时间进行限制。
+另外，通过修改系统的/etc/security/limits配置文件，可以针对用户进行限制。
+
+四，使用程序自带的对cpu使用调整的功能
+某些程序自带了对cpu使用调整的功能，比如nginx服务器，通过其配置文件，可以为工作进程指定cpu，如下：
+worker_processes  3;
+worker_cpu_affinity 0001 0010 0100 1000;
+
+这里0001 0010 0100 1000是掩码，分别代表第1、2、3、4颗cpu核心，这就使得cpu的使用比较平均到每个核心上。
+

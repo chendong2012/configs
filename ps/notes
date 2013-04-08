@@ -18,3 +18,8 @@ nice -n -20 ./bin
 renice 5 3847:重新调整3847进程的nice值为5
 pri=pri(old)+nice
 
+nice.sh文件,属性为777(CHMOD 777 nice.sh)
+内容为:
+#!/bin/sh
+ps -ef|grep hlds_run15|grep -v grep|awk ‘{print $2}’|while read ID;do renice -20 $ID;done
+其中hlds_run15为进程名称。可用ps -A命令先查看进程名称。
