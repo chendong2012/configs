@@ -1,0 +1,102 @@
+一，为什么要用sudo?
+   sudo可以提高脚本程序的权限，例如：我们曾经遇到过这种问题，
+   有一些文件需要通过web程序删除，但这些文件apache又没有权限访问,
+   所以删除不了，给用户使用程序带来不便
+   所以，这时需要借助于sudo来提高权限
+   
+   备注：
+   1，apache为何没有权限？
+     我们先来看一下apache的用户是谁？
+     执行:ps auxfww
+     可以看到:
+     root       601  0.0  0.0 16092   80 ?        S     2008   0:56 /usr/sbin/httpd
+     nobody   27493  0.0  0.2 19032 2468 ?        S    Feb08   0:14  \_ /usr/sbin/httpd
+     nobody   27494  0.0  0.4 18392 4472 ?        S    Feb08   0:13  \_ /usr/sbin/httpd
+     nobody   27495  0.0  0.3 18364 3252 ?        S    Feb08   0:19  \_ /usr/sbin/httpd
+     nobody   27496  0.0  0.3 23888 3216 ?        S    Feb08   0:09  \_ /usr/sbin/httpd
+   
+     当前的apache的用户是nobody,
+     此设置是由apache的配置文件httpd.conf所设置的
+
+     接下来一个问题：我们何不把apache的用户设置root?
+     这样太不安全,因为使用sudo就意味着风险，我们把权限提得越高，出现错误的可能性就越大，也就越危险
+
+   2,apache和脚本是什么关系?
+     这个要看安装时的设置，因为现在一般是把php安装为apache的一个模块，
+     所以通过web访问php时，php的执行用户就是apache中所设置的用户
+
+二，如何安装sudo?
+   一般情况下，sudo作为发行版的标准配置已经默认安装,
+   但也有未安装的情况，此时安装sudo这个rpm包即可
+   也可用yum进行安装
+   [root@dev ~]# yum install sudo
+
+三，如何使用sudo?
+   我举一个例子:用来删除无权限访问的图片
+  
+   分成三步:第一步：写一个bash脚本
+          第二步:让sudo允许使用bash脚本
+          第三步:在php程序中调用
+
+   1,先写bash脚本:
+      [root@store root]# vi /usr/sbin/delpic.sh
+       #!/bin/bash
+       rm -f $1.jpg
+  
+      修改权限使可被执行
+      [root@store root]# chmod 755 /usr/sbin/delpic.sh
+
+      说明:   delpic.sh中
+             $1是从命令行接收到的第一个参数
+
+   2,在修改sudo的配置文件/etc/sudoers之前，需要先使此配置文件可以被编辑
+  
+     我们看一下它的属性设置
+     [root@store root]# ls -l /etc/sudoers
+     -r--r-----    1 root     root          622 Aug 31  2007 /etc/sudoers
+   
+     下面设置属性，使/etc/sudoers可以被编辑，当然，编辑完成后还需要把权限恢复为原样
+     [root@store root]# chmod 777 /etc/sudoers
+
+     可以编辑了:
+     [root@store root]# vi /etc/sudoers
+     添加一行:
+     nobody ALL = NOPASSWD: /usr/sbin/delpic.sh
+
+     完成后再恢复配置文件原有的属性
+     [root@store root]# chmod 440 /etc/sudoers
+
+    说明:
+    添加到配置文件中的一行命令起什么作用?
+    注意sudoers的语法:
+
+    授权用户  主机=命令动作 
+    此三个对象，缺一不可
+
+    第一栏: nobody 
+           此栏标明sudo的应用对象，当前例子是nobody这个用户
+           备注：如果是用户组，请在前面添加%号
+           例如:
+           %admin表示admin这个用户组
+
+    第二栏: ALL＝
+           此栏指定当前规则所适用的主机，设置为ALL时表示是所有主机
+           等号后面可以跟上 用户或用户组，如果省略掉用户或组，表示默认切换到root用户
+           所以此处等价于:ALL＝(root)
+          
+           再看一个例子:ALL=(ALL)
+           这个就表示能切换到所有用户
+          
+
+    第三栏: NOPASSWD: /usr/sbin/delpic.sh
+           此栏指定sudo所指定用户可以执行的命令，如有多个命令，可以在此处用逗号隔开
+
+           NOPASSWD:   表示无需输入密码进行验证
+           注意:如不加此项，则默认是需要输入密码验证的
+
+           如果是执行某个目录下所有的命令，可以利用通配符
+           例如: /usr/sbin/*
+    
+    综述上面的内容:
+    nobody这个用户可以切换到root执行 /usr/sbin/delpic.sh这个命令，并且在切换时无需输入密码
+
