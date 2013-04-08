@@ -1,12 +1,16 @@
 用于查询进程的ni
 ps -lfC httpd
 
+这个也可以查NICE值
+$ ps axl | grep nice-test 
+
 renice -n -20~19 -p 进程号
 
 
 nice:显示当前的进程的优先级
 设置./bin可执行程序以-20的优先级运行
 nice -n -20 ./bin 
+
 
 
 
