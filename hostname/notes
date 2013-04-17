@@ -1,0 +1,8 @@
+hostname 在这里设置,断电有效
+/etc/sysconfig/network
+运行时有效
+/proc/sys/kernel/hostname
+
+COMMAND：
+sudo hostname a.b.c
+hostname
