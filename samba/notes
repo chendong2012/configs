@@ -1,0 +1,57 @@
+1
+建立samba服务器:
+
+2
+建立一个samba用户,前提是你系统要有这个用户.
+smbpasswd -a user
+
+3 
+systemctl start smb.service
+systemctl start nmb.service
+
+4
+注意防火墙的处理
+编辑:vim /etc/rc.d/rc.local
+加入如下的几项
+用到侦听端口:
+138:
+/sbin/iptables -I INPUT -p tcp --dport 138 -j ACCEPT
+/sbin/iptables -I INPUT -p udp --dport 138 -j ACCEPT
+139:
+/sbin/iptables -I INPUT -p tcp --dport 139 -j ACCEPT
+/sbin/iptables -I INPUT -p udp --dport 139 -j ACCEPT
+
+5、注意的是：123456 表示的你共享的名字!!!，[123456]
+man 8 mount.cifs
+mount -t cifs //192.168.1.105/123456 /home/chendong/a -o username=chendong
+mount -t cifs //192.168.1.105/123456 /home/chendong/a -o password=123456,username=chendong
+
+6、通过smbclient来挂载，注意的是：123456 表示的你共享的名字!!!，[123456]
+
+下面要输入密码
+sudo smbclient //192.168.1.105/123456 -U chendong
+
+下面不用输入密码:密码为123456
+sudo smbclient //192.168.1.105/123456 123456 -U chendong
+
+
+使用右边的:
+        workgroup = MYGROUP                 |          workgroup = WORKGROUP              
+
+#============================ Share Definiti|  #============================ Share Definit
+                                              |  
+  [homes]                                     |  [123456]                                   
+          comment = Home Directories          |          comment = Home Directories
+          browseable = no                     |          browseable = yes                   
+  --------------------------------------------|          path = /home/chendong/test         
+          writable = yes                      |          writable = yes
+  ;       valid users = %S                    |          valid users = chendong             
+  ;       valid users = MYDOMAIN\%S           |  ;       valid users = MYDOMAIN\%S
+                                              |  
+  [printers]                                  |  [printers]
+          comment = All Printers              |          comment = All Printers
+          path = /var/spool/samba             |          path = /var/spool/samba
+          browseable = no                     |          browseable = no
++ +-- 28 行: guest ok = no--------------------|+ +-- 28 行: guest ok = no-------------------
+  ~                                           |  ~                                          
+
