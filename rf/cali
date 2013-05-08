@@ -1,0 +1,13 @@
+receive:
+lna->dvga->middle-freq->amp->bb
+lna:低噪校准
+dvga:数字增益校准
+
+trans:
+bb->pa->lna->
+
+GSM:900-1800频段
+GSM850----850
+GSM---------900
+DCS---------1800
+PCS---------1900
