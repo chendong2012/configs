@@ -1,0 +1,229 @@
+分析内存的工具：smem
+vss rss pss uss
+共享代码段。uss
+一个进程被中断唤醒，接着不是去进程，因为接下来还有一个软中断
+，所以先去软中断，因为还有一个SPIN_LOCK的进程，所以再去等释放
+完这个锁之后，再会到最后被中断断唤醒的进程。
+
+
+中断，软中断，SPIN_LOCK是不能被调度。
+
+
+linux是软实时，而不是硬实时
+
+所有一切都是以线程为单位。
+对于内核来说，没有线程的概念。
+fork:出来一个子进程
+vfork：出来一个子进程
+clone：也是出来一个子进程，但是有一个很重要，它是父进程共享一切数据
+实现对于用户来说，就是一个进程里面的线程了。这一点很重要。
+
+
+内存被划成很多vma:虚拟内存区域(virtual memory areas),简称vma
+它是一块块的。不在此范围的都是不合法的。表现出来的是段错误
+vma 由task_struct的mm_struct统一进行管理。
+
+对于task_struct有几个地方是很重要的：
+它由双向链表:所有task_struct都是连在一起的。
+它由树：从树就可以看出来，谁是老大，并不是所有的task_struct都是老大。
+它由hash：目的根据PID很快就可以找到对于task_struct。
+三个方面进行统一管理。
+
+local_irq_disable:是用来控制CPU不接受中断的触发。
+disable_irq:表示的意思：用来操作中断控制器的。目的是不会去触发
+CPU。所以这是二个问题。
+
+
+
+
+ARM 体系：
+在多核系统中，一般是：
+所有的中断会有CPU0去处理的。当然也可以派给其它CPU。
+定时器中断
+IPI中断：主要是用来进行多核CPU通过中断的方式，来传递消息。
+
+其它CPU:
+定时器中断
+IPI中断：主要是用来进行多核CPU通过中断的方式，来传递消息。
+
+对CPU的打关：
+/sys/devices/system/cpu/cpu1 可以实现打开或是关闭CPU的。
+
+
+androdi 列出 服务的方法：service list
+
+检查你写的文件有没有问题：
+scripts/checkpatch.pl kernel/mutex.c 
+
+
+blk也是可以用来分配空间的
+
+
+
+
+mutex比信号量所消耗的资源小，都会引发中断的。
+所有的I2C IO操作都是睡眠的。
+
+
+
+内存的管理方法：
+
+主要分为三个大区：
+dma zone
+normal zone
+high zone
+
+这三个zone有buddy来统一管理。
+BUDDY 负责大内存，下来，SLAB分进行进一步的分出小内存。
+应用程序分配大内存，并不是立刻就分配出来了。
+同样释放内存也不是就真正没了。而是统一管理的。
+
+用户分配内存都是先从内核里搞一块大内存出来。然后享用。
+
+对于用户，就是操作页表，透过页表会MAP各个内存块
+堆，栈，代码区(有可能被多个进程共享)，数据区等
+vss rss pss uss 
+注意：IO型（优先级高）和CPU消耗型。
+
+ ++-----------++
+ |++         ++|
+ | ++       ++ |
+ |  ++     ++  |
+ |   ++   ++   |
+ |    ++ ++    |
+ |     +++     |
+ |     +++     |
+ |    ++ ++    |
+ |   ++   ++   |
+ |  ++     ++  |
+ | ++       ++ |
+ |++         ++|
+ ++-----------++
+模型不是M*N：
+是M*1----1*N
+就对了。
+
+
+设计的思想：
+一定要注意分离思想，哪些部分
+是跨平台，那些是让人很烦的，也
+可以说是个性化的部分。
+1、资源分离出来。平台和平台之间
+的差别最为重要的就是资源不一样。
+2、LINUX的设计思想，同样也是一样，
+把很多细节都高度集中后，得出来的接
+口都是简单，然后再把简单的接口给到你，
+让你再进一步复杂化，去实现你所要的细节。
+谢谢！
+
+
+有用的工具介绍：
+http://www.oschina.net/question/54100_24025
+1、oprofile-usage:
+OProfile是Linux内核支持的一种性能分析机制
+opreport
+oprofiled
+oprof_start
+oprofile 是 Linux 平台上的一个功能强大的性能分析工具， 支持两种采样(sampling)方式：基于事件的采样(event based)和基于时间的采样(time based)。
+基于事件的采样是oprofile只记录特定事件（比如L2 cache miss）的发生次数，当达到用户设定的 定值时oprofile 就记录一下（采一个样）。这种方式需要CPU 内部有性能计数器(performace counter)。
+基于时间的采样是oprofile 借助OS 时钟中断的机制，每个时钟中断 oprofile 都会记录一次(采一次样）。引入的目的在于，提供对没有性能计数器 CPU 的支持。其精度相对于基于事件的采样要低。因为要借助 OS 时钟中断的支持，对禁用中断的代码oprofile不能对其进行分析。
+oprofile 在Linux 上分两部分，一个是内核模块(oprofile.ko)，一个为用户空间的守护进程(oprofiled)。前者负责访问性能计数器或者注册基于时间采样的函数(使用register_timer_hook注册之，使时钟中断处理程序最后执行profile_tick 时可以访问之)，并采样置于内核的缓冲区内。后者在后台运行，负责从内核空间收集数据，写入文件。
+Oprofile 工具概述：
+op_help: 列出可用的事件，并带有简短的描述opcontrol: 控制 Oprofile 的数据收集oprofpp: 检索有用的评测数据op_time: 为系统上的所有映像列出相关的评测值op_to_source: 产生带注解的源文件、汇编文件或源文件和汇编文件的混合op_merge: 合并属于同一个应用程序的采样文件op_import: 将采样数据库文件从外部格式（abi）转换为本地格式
+
+
+powertop
+htop
+iotop
+bootchart
+iostat---->iotop-->lsof -p1
+
+
+LTT（Linux Trace Toolkit）是linux下一种用于跟踪系统详细运行状态和流程的重要工具，它可以跟踪记录系统中的特定事件。这些事件包括：
+http://lwn.net/Articles/170198/
+http://www.ibm.com/developerworks/cn/linux/l-oprof/
+
+
+
+cpu mem io关系图--------重要
+
+
+
+内核会映射到3G到4G 的空间去。
+根据ARM的特性，跳转的范围为32M。
+内核模块是安装在3G-16M到3G的范围
+而内核代码是在3G+16M
+这样的话，是可以直接跳转的。
+dev_xxx 是在设备上下文的
+pr_xxx是在 hw_breakpoint*上的---LANANA
+【4】重烧内核启动后，改变控制台debug消息显示级别7-->8，可以打印printk(DEBUG ...)信息
+
+cat /proc/sys/kernel/printk
+
+7    4    1   7
+echo 8 4 1 7 > /proc/sys/kernel/printk或者
+
+echo 8 > /proc/sys/kernel/printk
+
+
+
+编程的时候最好不要else
+要if 不要else
+
+
+0x8c/0xec 表示偏移地址为0x8c,而总长为0xec
+
+ulimit
+http://blog.haohtml.com/archives/6940
+
+
+僵进程：要等父进程WAIT过后，就会消失，
+如果没有WAIT那么就变成，僵进程.
+如何杀死它呢？只能够把父进程，INIT 变成
+它的父进程，init会去wait所有子进程
+
+
+mutex 2.6.16进来的 rt patch
+
+
+用锁的原则：
+1、同一把锁
+2、语义为整体，这最重要
+3、粒度要小
+
+
+mdelay udelay:系统会先开机算好时间（mips）bogomips
+会用掉100mS左右
+也可以去掉。
+
+
+
+DMA:
+流式DMA是上层给你的地址。
+也要做映射。
+一致性缓冲区,自己申请的DMA
+
+
+
+串口抓包工具，有时间点
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
