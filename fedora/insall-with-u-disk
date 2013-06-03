@@ -21,6 +21,7 @@ sha256sum -c *-CHECKSUM
     If TYPE is anything other than vfat (for example, TYPE="iso9660"), clear the first blocks of the USB flash drive:
 
     # dd if=/dev/zero of=partition bs=1M count=100
+	partition 指的是sdb1 等
 
     Use the dd command to transfer the boot ISO image to the USB device:
 
