@@ -38,9 +38,3 @@ find . -maxdepth 1 -type f -o -type l | tar czvfh ~/etc.tar.gz -T -
 实现查看压缩文件的内容：
 tar tzvf etc.tar.gz
 tar tjvf etc.tar.bz2
-
-
-
-
-
-
