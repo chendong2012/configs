@@ -1,0 +1,8 @@
+二、unrar 的用法
+基本的unrar用法： unrar x -o- -y  qkweb.net.rar   /qkweb/www.qkweb.net/  （把qkweb.net.rar文件，解压到/qkweb/www.qkweb.net目录下。要注意解压目录必须以 / 结束）
+unrar分卷解压： 假设第一个分卷的文件名qkweb.net.r00，所有分卷都在同一个目录。
+那么就直接 unrar  x -o- -y qkweb.net.r00      /qkweb/www.qkweb.net/
+
+
+
+
