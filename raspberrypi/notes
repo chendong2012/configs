@@ -30,3 +30,12 @@ http://www.penguintutor.com/linux/raspberrypi-webserver
 
 omxplayer 重新安装解决一些问题
 https://play.google.com/store/apps/details?id=com.raspberry.remote&hl=zh_CN
+
+
+
+=================================
+建立红外传感接收器
+http://aron.ws/projects/lirc_rpi/
+
+如何编RASP的内核：
+http://elinux.org/RPi_Kernel_Compilation
