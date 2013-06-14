@@ -39,3 +39,79 @@ http://aron.ws/projects/lirc_rpi/
 
 如何编RASP的内核：
 http://elinux.org/RPi_Kernel_Compilation
+
+
+
+raspberry 的镜像包括一些发行版　
+http://mirrordirector.raspbian.org/qemu/
+
+
+===============================
+远程桌面
+
+教程：
+中文翻译
+http://www.oschina.net/translate/how-to-remote-desktop-raspberry-pi?p=2#comments
+原文:
+http://www.jeremymorgan.com/tutorials/raspberry-pi/how-to-remote-desktop-raspberry-pi/
+
+
+
+服务器
+sudo apt-get install xrdp
+客户端
+sudo apt-get install rdesktop 
+or
+sudo yum install rdesktop 
+
+使用：
+rdesktop < the IP address of your Pi > 
+针对ＬＩＮＵＸ的dpi
+rdesktop -r 1024x768 < the IP address of your Pi >
+这个比vnc的优势在哪？
+搜rfb(remote framebufer) 和 rdp(Remote Desktop Protocol)的区别RFB的典型应用有VNC：RFB是在服务器端将窗口在显存中画好之后将图像传给客户端，客户端只充当一个图像解码显示的角色； RDP则将画图的工作交给了客户端，服务器需要了解客户端显示能力的具体情况，以便作出相应调整。
+
+=================================================================
+专业网站，里面有很多ＢＬＯＧ，以及知识，以及各种服务器的搭建
+*****
+http://www.jeremymorgan.com/blog/raspberry-pi/
+
+
+=================================================================
+挂载ntfs的好方法：
+sudo mount -t ntfs-3g -o uid=pi,gid=pi /dev/sda1 /media/USBDRIVE/
+http://www.jeremymorgan.com/tutorials/raspberry-pi/how-to-raspberry-pi-file-server/
+
+
+
+raspberry xbmc 的资料
+http://www.cnblogs.com/ma6174/archive/2013/01/25/2875617.html
+
+
+
+
+http://blog.crackcell.com/posts/2012/09/13/rpi_setup.html
+dd if=2012-08-16-wheezy-raspbian.img of=/dev/sdX
+我用的8G的sd卡，镜像的系统没有充满整张卡，所以使用gparted扩展了第2个ext4分区。 
+用无线网卡tplink
+
+删除不用软件
+http://blog.crackcell.com/posts/2012/09/19/rpi_reduce_size.html
+ sudo apt-get purge lxappearance lxde lxde-common lxde-core  \
+                     lxde-icon-theme lxinput lxpanel lxpolkit \
+                     lxrandr lxsession-edit lxshortcut lxtask \
+                     lxterminal xinit xserver-xorg xserver-xorg-video-fbdev \
+                     desktop-base desktop-file-utils gnome-icon-theme \
+                     gnome-themes-standard leafpad menu-xdg omxplayer \
+                     scratch xarchiver zenity leafpad scratch dillo midori \
+                     netsurf
+$ sudo apt-get autoremove
+$ sudo apt-get clean
+
+
+========================================
+麦库：
+树莓派+USB摄像
+http://www.yeelink.net/developer
+http://note.sdo.com/u/634687868481358385/n/M5cEN~km8xIgLX0kc003gj
+
