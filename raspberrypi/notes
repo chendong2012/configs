@@ -115,3 +115,36 @@ $ sudo apt-get clean
 http://www.yeelink.net/developer
 http://note.sdo.com/u/634687868481358385/n/M5cEN~km8xIgLX0kc003gj
 
+=========================================
+复制sd卡
+http://elinux.org/RPi_Beginners#Create_a_new_user_with_sudo-privileges
+
+
+
+
+========================================
+控制gpio很多应用可用
+http://lukasz-skalski.com/index.php/component/option,com_phocadownload/Itemid,90/id,1/view,category/
+http://lukasz-skalski.com/index.php/projekty-inne/raspberry-control-control-raspberry-pi-with-your-android-device.html
+http://www.raspberrypi.org/phpBB3/viewtopic.php?f=41&t=36799
+
+
+
+========================================
+复制sd卡的工具
+
+http://code.google.com/p/rasp-pi-card/
+
+
+=======================================
+gpio源码
+http://code.google.com/p/gpio-pi/
+
+
+=======================================
+omxplayer gui
+http://code.google.com/p/omxgtk/source/checkout
+
+======================================
+dia control
+http://code.google.com/p/fh-kapfenberg-ss2013-raspberry-pi/source/checkout
