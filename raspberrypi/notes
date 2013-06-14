@@ -148,3 +148,10 @@ http://code.google.com/p/omxgtk/source/checkout
 ======================================
 dia control
 http://code.google.com/p/fh-kapfenberg-ss2013-raspberry-pi/source/checkout
+
+
+
+========================================
+ssh applications:
+https://code.google.com/p/remoterunner/source/checkout
+https://github.com/cachapa/RemoteGallery/blob/master/src/net/cachapa/remotegallery/ssh/Ssh.java
