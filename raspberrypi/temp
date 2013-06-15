@@ -5,3 +5,9 @@ http://blog.thestateofme.com/2012/06/16/building-openelec-in-the-cloud/
 
 jsch 用法
 http://stackoverflow.com/questions/12029171/android-java-app-jsch-send-commands-using-buttons
+http://stackoverflow.com/questions/5831594/multiple-commands-through-jsch-shell
+
+
+
+ch.ethz.ssh2
+http://blog.csdn.net/carolzhang8406/article/details/6760430
