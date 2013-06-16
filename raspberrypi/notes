@@ -165,3 +165,27 @@ http://8366.iteye.com/blog/378867
 
 rasp 的ＦＬＡＳＨ插件
 http://www.cfanz.cn/index.php?c=article&a=read&id=50432
+
+===============================================
+Multimedia on the Raspberry Pi with omxplayer
+http://www.tuicool.com/articles/NnmyUf
+$ sudo apt-get install alsa-utils
+
+We then need to install and enable the sound driver module. In the example below, we have chosen to have the audio output routed to the headphone socket.
+$ sudo modprobe snd_bcm2835
+$ sudo amixer cset numid=3 1
+
+So that the sound driver module is loaded at boot time, we need to add the following text to the /etc/modules file (using an editor such as nano, pico, or vi).
+snd_bcm2835
+
+By default, Raspbian Pisces allocates 32MB of RAM to the video with the remaining 224MB to the operating system. However, this allocation of RAM prevents omxplayer running. To watch videos with oxmplayer, we need to allocate at least 64MB of RAM to video. To do this, we replace the start.elf file (which dictates the allocation of RAM) by typing the following commands at the shell prompt:
+$ cd /boot
+$ sudo cp arm192_start.elf start.elf
+
+After rebooting the Pi, the system allocates 64MB to the video which is sufficient for omxplayer to play video files.
+
+We also wanted to configure Raspbian to access our NAS drive. The quickest way to access shares on the NAS is to add the following line to the bottom of /etc/fstab, having first created a /media/nas directory with the appropriate permissions.
+//192.168.1.103/share_name /media/nas cifs username=XXX,password=YYY
+
+We also experimented with installing FuseSmb. There is a good guide to configure FuseSmb on Ubuntu's website (at https://help.ubuntu.com/community/FuseSmb). In addition, it was useful to resize the ext4 partition on the SD card so that the Raspberry Pi can access the entire card, to test playing files direct from the SD card itself.
+==========================================
