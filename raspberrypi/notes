@@ -189,3 +189,8 @@ We also wanted to configure Raspbian to access our NAS drive. The quickest way t
 
 We also experimented with installing FuseSmb. There is a good guide to configure FuseSmb on Ubuntu's website (at https://help.ubuntu.com/community/FuseSmb). In addition, it was useful to resize the ext4 partition on the SD card so that the Raspberry Pi can access the entire card, to test playing files direct from the SD card itself.
 ==========================================
+
+
+
+语言设置为中文
+http://www.eeboard.com/tutorials/raspberry-pi%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B%E6%95%99%E7%A8%8B/2/
