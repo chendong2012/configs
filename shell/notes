@@ -38,3 +38,21 @@ find . -maxdepth 1 -type f -o -type l | tar czvfh ~/etc.tar.gz -T -
 实现查看压缩文件的内容：
 tar tzvf etc.tar.gz
 tar tjvf etc.tar.bz2
+
+=========================================================
+理解"$@" 表示的意思： "$@" is equivalent to "$1" "$2" ...
+查找并替换数组的指定元素
+#!/bin/bash
+echo "$@"
+bb=(`echo "$@"`)
+ls ${bb[*]}
+num=${#bb[*]}
+echo $num
+for ((i=0;i<num;i++)) {
+        if [ "${bb[$i]}" = "-l" ]; then
+                bb[$i]="-a"     
+        fi
+        echo ${bb[$i]}
+}
+
+========================================================
