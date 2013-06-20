@@ -72,3 +72,4 @@ sudo yum install wqy-bitmap-fonts wqy-zenhei-fonts wqy-unibit-fonts wqy-microhei
 
 sudo yum install meld
 sudo yum install samba
+sudo yum install gparted
