@@ -1,0 +1,15 @@
+16进制编译器
+http://www.brighthub.com/computing/linux/articles/89715.aspx#imgn_0
+sudo yum install ghex
+
+sudo yum install bvi
+set memmove
+
+sudo yum install hexedit
+可以操作设备
+
+
+http://www.brighthub.com/computing/linux/articles/36901.aspx?cid=parsely_rec
+
+各种16进制比较工具
+http://en.wikipedia.org/wiki/Comparison_of_hex_editors
