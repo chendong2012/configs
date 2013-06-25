@@ -3,13 +3,80 @@ svn
 ================
 su rpm -ivh http://linuxdownload.adobe.com/adobe-release/adobe-release-i386-1.0-1.noarch.rpm
 
-rpm –import /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux
+rpm -import /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux
 
 yum update
 
 yum install flash-plugin
 
+sudo yum install flash-plugin nspluginwrapper alsa-plugins-pulseaudio libcurl
+
 ===============
+wubi
+sudo yum install ibus-table-chinese-wubi-jidian.noarch
+===============
+===============
+download virtualbox
+step1:
+	https://www.virtualbox.org/wiki/Downloads
+
+step1.1：
+sudo yum install	libGL.so.1
+sudo yum install	libQtCore.so.4
+sudo yum install	libQtGui.so.4
+sudo yum install	libQtNetwork.so.4
+sudo yum install	libQtOpenGL.so.4
+sudo yum install	libXcursor.so.1
+sudo yum install	libXinerama.so.1
+sudo yum install	libXmu.so.6
+sudo yum install	libXt.so.6
+sudo yum install	libasound.so.2
+sudo yum install	libcrypto.so.10
+sudo yum install	libcrypto.so.10
+sudo yum install	libcurl.so.4
+sudo yum install	libdevmapper.so.1.02
+sudo yum install	libdevmapper.so.1.02
+sudo yum install	libpng15.so.15
+sudo yum install	libpng15.so.15
+sudo yum install	libpython2.7.so.1.0
+sudo yum install	libssl.so.10
+sudo yum install	libssl.so.10
+sudo yum install	libxml2.so.2
+sudo yum install	libxml2.so.2
+sudo yum install	libxml2.so.2
+sudo yum install	libxml2.so.2
+sudo yum install	libxml2.so.2
+
+按下面的安装就可以了，会安装依赖
+sudo yum install VirtualBox
+
+要注意把BIOS的硬件虚拟化打开
+
+step2:
+二、安装virtualbox虚拟机
+      sudo rpm -ivh VirtualBox-4.2-4.2.8_83876_fedora18-1.x86_64.rpm
+      终端输入命令：sudo yum install -y kernel-headers kernel-devel dkms 
+三、更新一下系统：sudo yum -y update
+三、重新编译虚拟机驱动内核部分 ( can skip because install virtualbox will do it)
+      sudo /etc/init.d/vboxdrv setup
+四、添加vboxusers组到当前用户所在组
+      sudo usermod -G vboxusers -a $USER
+
+五、如果出现“说kernel源文件找不到。” error：检查kernel和kernel-devel版本是否一致，运行以下命令：
+     uname -r （或rpm -q kernel）查看kernel版本
+     rpm -q kernel-devel 查看 kernel-devel版本
+     若发现不一致，如kernel版本低，则更新一下kerner ：
+             sudo yum update kernel
+     若一致时，要先卸载以前安装的VirtualBox再重新安装：
+             rpm -q VirtualBox （查看virtualbox）
+             rpm -e VirtualBox （卸载virtualbox）
+             sudo rpm -ivh VirtualBox-4.2-4.2.8_83876_fedora18-1.x86_64.rpm （安装virtualbox）
+六、如果虚拟机安装好系统后，并且也安装了增强工具，但是发现虚拟机VirtualBox不能识别到usb设备时，需要再安装一个usb控制器扩展包，仍然是到上面的这个网站下载，像是这样的：
+     Oracle_VM_VirtualBox_Extension_Pack-4.2.8-83876.vbox-extpack
+     下载完了以后，打开虚拟机，依次点击“管理”--->“全局设定”--->“扩展”，在里面选择刚才下载的扩展包安装即可。
+===============
+step 1:rpmfusion.org
+step 2:
 yum install ffmpeg ffmpeg-libs gstreamer-ffmpeg xvidcore libdvdread libdvdnav lsdvd
 yum install gstreamer-plugins-good gstreamer-plugins-bad gstreamer-plugins-ugly
 
@@ -72,4 +139,68 @@ sudo yum install wqy-bitmap-fonts wqy-zenhei-fonts wqy-unibit-fonts wqy-microhei
 
 sudo yum install meld
 sudo yum install samba
+
+
+
+
+
+fedora 18 发行注记
+有用
+安装meta桌面
+sudo yum groupinstall "MATE Desktop"
+
+
+可以找到KERNEL 相关 包括调试的东东:wq
+
+ sudo yum search kernel
+
+yum search VirtualBox 
+
+sudo yum install screen
+
+
+
+sudo yum install wine
 sudo yum install gparted
+====
+sudo yum install mingw32-*  注意要做一些软链接
+/usr/bin/i586-mingw32msvc-gcc -> /usr/bin/i686-w64-mingw32-gcc
+====
+
+
+====
+andorid error
+sudo yum install perl-Switch.noarch
+Generating HTMLEntityTable.cpp
+Can't locate Switch.pm in @INC (@INC contains: /usr/local/lib64/perl5 /usr/local/share/perl5 /usr/lib64/perl5/vendor_perl /usr/share/perl5/vendor_perl /usr/lib64/perl5 /usr/share/perl5 .) at external/webkit/Source/WebCore/make-hash-tools.pl line 23.
+BEGIN failed--compilation aborted at external/webkit/Source/WebCore/make-hash-tools.pl line 23.
+make[2]: *** [out/target/product/gionee89_dwe_jb2/obj/STATIC_LIBRARIES/libwebcore_intermediates/Source/WebCore/html/DocTypeStrings.cpp] 错误 2
+make[2]: *** 正在等待未完成的任务....
+target Generated: libwebcore <= external/webkit/Source/WebCore/platform/ColorData.gperf
+Can't locate Switch.pm in @INC (@INC contains: /usr/local/lib64/perl5 /usr/local/share/perl5 /usr/lib64/perl5/vendor_perl /usr/share/perl5/vendor_perl /usr/lib64/perl5 /usr/share/perl5 .) at external/webkit/Source/WebCore/make-hash-tools.pl line 23.
+BEGIN failed--compilation aborted at external/webkit/Source/WebCore/make-hash-tools.pl line 23.
+make[2]: *** [out/target/product/gionee89_dwe_jb2/obj/STATIC_LIBRARIES/libwebcore_intermediates/Source/WebCore/platform/ColorData.cpp] 错误 2
+target Generated: libwebcore <= external/webkit/Source/WebCore/html/parser/HTMLEntityNames.in
+
+====
+
+sudo yum install p7zip
+
+安装xbian 所要的QT库
+sudo yum install qt5-qtbase-x11-5.0.2-2.fc18
+XBian-installer
+
+linux 下配置控制台字体
+sudo dpkg-reconfigure console-setup
+
+raspberry lcd
+http://www.blogjava.net/baicker/archive/2012/12/18/392829.html
+编译内核部分参考了这里http://elinux.org/RPi_Kernel_Compilation
+下载源码包：https://github.com/raspberrypi/linux/archive/rpi-3.6.y.tar.gz
+http://spritesmods.com/?art=rpi_arcade&page=1
+
+raspberry 入口
+elinux.org
+
+
+sudo yum install unrar

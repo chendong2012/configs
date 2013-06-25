@@ -262,3 +262,6 @@ raspberry airplay
 http://raspberrypi.diandian.com/post/2013-01-03/40047017325
 http://www.eeboard.com/bbs/thread-6709-1-1.html
 http://jordanburgess.com/post/38986434391/raspberry-pi-airplay
+
+设置音频输出到本地
+ sudo amixer cset numid=3 1
