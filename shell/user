@@ -1,0 +1,21 @@
+groups 查看当前登录用户的所在的组有哪些
+
+1、/etc/group 内容具体分析(列出所有的用户的组ID)
+/etc/group 的内容包括用户组（Group）、用户组口令、GID及该用户组所包含的用户（User），每个用户组一条记录；格式如下：
+group_name:passwd:GID:user_list
+在/etc/group 中的每条记录分四个字段：
+第一字段：用户组名称；
+第二字段：用户组密码；
+第三字段：GID
+第四字段：用户列表，每个用户之间用,号分割；本字段可以为空；如果字段为空表示用户组为GID的用户名；
+
+[chend@localhost shell]$ id
+uid=1000(chend) gid=1000(chend) 组=1000(chend),10(wheel),18(dialout),1001(vboxusers)
+[chend@localhost shell]$ ssh -l chend 18.8.8.115
+chend@18.8.8.115's password: 
+chend@hwqudong-desktop:~$ id chenzhen
+uid=1017(chenzhen) gid=1021(chenzhen) 组=1021(chenzhen),1016(ftp_drv)
+
+
+id 可以输出：你的组有哪些
+以及你的UID和GID
