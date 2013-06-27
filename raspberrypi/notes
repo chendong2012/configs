@@ -268,3 +268,11 @@ add 组
 sudo useradd john -m -G users
 sudo passwd john
 sudo smbpasswd -a john
+http://elinux.org/R-Pi_NAS
+
+
+听收音机
+mplayer mms://bcr.media.hinet.net/RA000018
+
+编译内核
+http://blog.retep.org/2012/07/08/compiling-a-kernel-on-the-raspberry-pi/
