@@ -282,3 +282,6 @@ http://blog.retep.org/2012/07/08/compiling-a-kernel-on-the-raspberry-pi/
 
 raspberry pi camera
 http://pingbin.com/2012/12/raspberry-pi-web-cam-server-motion/
+sudo apt-get install fswebcam
+
+
