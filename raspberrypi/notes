@@ -287,6 +287,10 @@ sudo apt-get install fswebcam
 http://www.phillips321.co.uk/2012/11/05/raspberrypi-webcam-mjpg-stream-cctv/
 mjpg_streamer -i "/usr/lib/input_uvc.so -r QVGA -f 2 -d /dev/video0" -o "/usr/lib/output_http.so -p 8089 -w /var/www/mjpg_streamer -n"
 
+mjpg_streamer -i "/usr/lib/input_uvc.so -r QVGA -f 2 -d /dev/video0" -o "/usr/lib/output_http.so -p 8089 -w ./www"
+
+有趣的CAMERA把你的照片直接连到你的GITHUB
+http://blog.davidsingleton.org/raspberry-pi-webcam-a-gentle-intro-to-crontab/
 
 
 实现AIRPLAY
