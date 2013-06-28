@@ -21,5 +21,3 @@ git config --global color.status.untracked "cyan"
 git config --global diff.external gitmeld
 ##!/bin/sh
 #meld $2 $5
-
-
