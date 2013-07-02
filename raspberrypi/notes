@@ -270,3 +270,49 @@ add 组
 sudo useradd john -m -G users
 sudo passwd john
 sudo smbpasswd -a john
+http://elinux.org/R-Pi_NAS
+
+
+听收音机
+mplayer mms://bcr.media.hinet.net/RA000018
+
+编译内核
+http://blog.retep.org/2012/07/08/compiling-a-kernel-on-the-raspberry-pi/
+
+
+raspberry pi camera
+http://pingbin.com/2012/12/raspberry-pi-web-cam-server-motion/
+sudo apt-get install fswebcam
+
+http://www.phillips321.co.uk/2012/11/05/raspberrypi-webcam-mjpg-stream-cctv/
+mjpg_streamer -i "/usr/lib/input_uvc.so -r QVGA -f 2 -d /dev/video0" -o "/usr/lib/output_http.so -p 8089 -w /var/www/mjpg_streamer -n"
+
+mjpg_streamer -i "/usr/lib/input_uvc.so -r QVGA -f 2 -d /dev/video0" -o "/usr/lib/output_http.so -p 8089 -w ./www"
+
+有趣的CAMERA把你的照片直接连到你的GITHUB
+http://blog.davidsingleton.org/raspberry-pi-webcam-a-gentle-intro-to-crontab/
+
+
+实现AIRPLAY
+http://blog.163.com/hy_ice719/blog/static/8766281820132511157671/
+http://www.jordanburgess.com/post/38986434391/raspberry-pi-airplay
+
+
+raspberry gpio 编程
+http://blog.163.com/hy_ice719/blog/static/8766281820135151473927/?latestBlog
+(wiringPi主页：http://wiringpi.com/)
+
+
+
+首先进行安装：
+
+git clone git://git.drogon.net/wiringPi
+
+cd wiringPi
+
+./build
+
+
+(想用其他方法安装，请看：http://wiringpi.com/download-and-install/ )
+
+http://cn.engadget.com/2013/03/04/adafruit-internet-of-things-printer-wireless-raspberry-pi/
