@@ -29,3 +29,6 @@ echo "u" > /proc/sysrq-trigger
 呵呵，此外还有两个，类似于强制注销的功能
 e — Kills all processes except init using SIGTERM
 i — Kills all processes except init using SIGKILL
+
+内核的调试以及PANIC问题
+http://linux.ctocio.com.cn/484/12168484.shtml
