@@ -204,3 +204,6 @@ elinux.org
 
 
 sudo yum install unrar
+
+
+sudo yum install samba*
