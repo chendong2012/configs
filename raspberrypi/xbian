@@ -31,4 +31,19 @@ iface default inet dhcp
 #wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
 #wireless-power off
 #iface default inet dhcp
+===============================
+安装maplyer
+sudo apt-get install mplayer
 
+在xbian系统下，如果要用mplayer来播放的话，
+要把xbian加到audio组里面去
+修改:/etc/group
+然后重启
+
+经常　有一些是因为一般用户不能做的事，而root用户可以，就是因为一些
+权限或是组的问题
+
+下面二点为可选
+udo apt-get install libsdl1.2-dev
+sudo apt-get install mpg123
+==========================
