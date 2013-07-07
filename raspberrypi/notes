@@ -270,6 +270,9 @@ add 组
 sudo useradd john -m -G users
 sudo passwd john
 sudo smbpasswd -a john
+
+#如果已有pi用户，那么就直接就执行下面的创建samba pi 用户的密码
+sudo smbpasswd -a pi
 http://elinux.org/R-Pi_NAS
 
 
