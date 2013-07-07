@@ -47,3 +47,6 @@ sudo apt-get install mplayer
 udo apt-get install libsdl1.2-dev
 sudo apt-get install mpg123
 ==========================
+格式转换工具(mpg--->mp4)
+对应的脚本convert.sh
+http://www.linuxidc.com/Linux/2010-11/29810.htm
