@@ -1,0 +1,15 @@
+Remastersys可以把你安装的Ubuntu、Debian及其衍生版打包成一个可以用来安装的Live CD/DVD的iso文件。
+你可以打包一个包含个人数据的iso文件作为系统备份，也可以打包一个不包含个人数据的iso文件发布给其他人安装。
+http://www.oschina.net/p/remastersys
+
+http://zhan.renren.com/geekotaku/?checked=true
+/var/cache/ 是一个软件缓存包的地方
+
+
+
+bubakup(全盘备份UbuntuLinux系统)
+http://www.qnr.cn/pc/lin/redflag/fudao/200901/116684.html
+
+
+各种克隆工具
+http://www.cnblogs.com/linuxcat/archive/2012/08/07/2627387.html
