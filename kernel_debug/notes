@@ -40,3 +40,7 @@ http://linux.ctocio.com.cn/484/12168484.shtml
 arm-linux-gnueabi-objdump -D vmlinux > kernel_dump.txt
 (gdb) list *(local_bh_enable_ip+0x98)
 
+
+
+如何利用API打出所有的STACK出来。
+http://www.kgdb.info/linuxdev/backtrace_without_gdb/
