@@ -32,3 +32,11 @@ i — Kills all processes except init using SIGKILL
 
 内核的调试以及PANIC问题
 http://linux.ctocio.com.cn/484/12168484.shtml
+
+
+
+
+使用GDB调试
+arm-linux-gnueabi-objdump -D vmlinux > kernel_dump.txt
+(gdb) list *(local_bh_enable_ip+0x98)
+
