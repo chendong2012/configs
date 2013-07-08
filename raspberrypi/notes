@@ -342,3 +342,8 @@ http://elinux.org/RPi_Text_to_Speech_%28Speech_Synthesis%29
 http://blog.sina.com.cn/s/blog_3cb6a78c0101a81r.html
 http://bbs.ickey.cn/index.php?app=group&ac=topic&id=2105
 
+
+http://bbs.ickey.cn/index.php?app=group&ac=topic&id=2182
+没有电视，如何得知模拟视频输出与否？ 
+./opt/vc/bin/tvservice -s
+
