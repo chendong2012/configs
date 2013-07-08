@@ -1,0 +1,11 @@
+http://blog.chinaunix.net/uid-27159438-id-3280213.html
+pc : [<80375de8>]    lr : [<801ce2d0>]    psr: a0000013
+pc里面对应的指令代码：80375de8
+
+#linux 的相关文章，包括CPU，内存等等
+http://ilinuxkernel.com/?p=1450
+http://ilinuxkernel.com/?cat=3
+
+
+学习backtrace，锋利工具
+http://www.kgdb.info/linuxdev/backtrace_without_gdb/
