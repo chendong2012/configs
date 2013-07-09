@@ -1,0 +1,58 @@
+1\得到服务器的配置文件
+http://pan.baidu.com/share/link?shareid=273365&uk=2114973662
+sudo apt-get install lsof
+
+网络配置：
+auto lo
+iface lo inet loopback
+
+atuo eth0
+iface eth0 inet static
+address 192.168.1.123
+network 192.168.1.0
+netmask 255.255.255.0
+broadcast 192.168.1.255
+gateway 192.168.1.1
+
+#iface eth0 inet dhcp
+
+allow-hotplug wlan0
+iface wlan0 inet manual
+wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
+iface default inet dhcp
+##############################################################
+#auto lo
+
+#iface lo inet loopback
+#iface eth0 inet dhcp
+
+#allow-hotplug wlan0
+#iface wlan0 inet manual
+#wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
+#wireless-power off
+#iface default inet dhcp
+===============================
+安装maplyer
+sudo apt-get install mplayer
+
+在xbian系统下，如果要用mplayer来播放的话，
+要把xbian加到audio组里面去
+修改:/etc/group
+然后重启
+
+经常　有一些是因为一般用户不能做的事，而root用户可以，就是因为一些
+权限或是组的问题
+
+下面二点为可选
+udo apt-get install libsdl1.2-dev
+sudo apt-get install mpg123
+==========================
+格式转换工具(mpg--->mp4)
+对应的脚本convert.sh
+http://www.linuxidc.com/Linux/2010-11/29810.htm
+
+
+
+===========================
+raspberry 专卖屏
+http://item.taobao.com/item.htm?spm=2013.1.1000774.9.lAvFxN&id=25306464879

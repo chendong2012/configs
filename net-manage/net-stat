@@ -1,0 +1,4 @@
+sudo netstat -anp
+sudo netstat -Z //查看SELINUX
+sudo lsof -i:22
+

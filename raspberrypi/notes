@@ -266,13 +266,22 @@ http://jordanburgess.com/post/38986434391/raspberry-pi-airplay
 设置音频输出到本地
  sudo amixer cset numid=3 1
 
+===================================================================================
+
 add 组
 sudo useradd john -m -G users
 sudo passwd john
 sudo smbpasswd -a john
+
+#如果已有pi用户，那么就直接就执行下面的创建samba pi 用户的密码
+sudo smbpasswd -a pi
 http://elinux.org/R-Pi_NAS
 
+检查配置smb.conf是否正确：
+testparm
+http://www.jeremymorgan.com/tutorials/raspberry-pi/how-to-raspberry-pi-file-server/
 
+====================================================================================
 听收音机
 mplayer mms://bcr.media.hinet.net/RA000018
 
@@ -316,3 +325,48 @@ cd wiringPi
 (想用其他方法安装，请看：http://wiringpi.com/download-and-install/ )
 
 http://cn.engadget.com/2013/03/04/adafruit-internet-of-things-printer-wireless-raspberry-pi/
+
+
+用ＲＡＳＰＢＥＲＲＹ　blog
+http://www.eeboard.com/bbs/thread-6709-1-1.html
+
+用raspberry 作打印机，同时介绍了android 手机系统也有打印机的客户端
+http://www.eeboard.com/bbs/thread-8818-1-10.html
+
+
+接一个spi接口的屏
+http://shamiao.com/project/raspi12864
+http://item.taobao.com/item.htm?spm=a230r.1.14.71.2pPyGa&id=19704991628
+
+用可乐甁做外壳
+http://www.eeboard.com/bbs/thread-11308-1-7.html
+
+
+
+Raspberry Pi 文字转语音服务
+http://elinux.org/RPi_Text_to_Speech_%28Speech_Synthesis%29
+http://blog.sina.com.cn/s/blog_3cb6a78c0101a81r.html
+http://bbs.ickey.cn/index.php?app=group&ac=topic&id=2105
+
+
+http://bbs.ickey.cn/index.php?app=group&ac=topic&id=2182
+没有电视，如何得知模拟视频输出与否？ 
+./opt/vc/bin/tvservice -s
+
+
+
+
+LCD项目
+http://www.freemindworld.com/blog/
+https://github.com/aufder/RaspberryPiLcdMenu
+http://aron.ws/projects/lirc_rpi/
+
+
+//blog
+http://www.guokr.com/post/332043/
+WordPress是一种使用PHP语言开发的博客平台，用户可以在支持PHP和MySQL 数据库的服务器上架设自己的网志。
+也可以把 WordPress 当作一个内容管理系统（CMS）来使用。WordPress 是一个免费的开源项目，
+在GNU通用公共许可证下授权发布。目前最新版本为2013 年 1 月 25 日WordPress 3.5.1版。 
+WordPress 被认为是Michel Valdrighi所开发的网志平台b2/cafelog的正式继承者。
+“WordPress”这个名字出自 Christine Selleck 的主意，他是主要开发者Matt Mullenweg的朋友。
+

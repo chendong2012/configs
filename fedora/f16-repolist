@@ -217,3 +217,7 @@ IRC聊天工具irssi；网页浏览器w3m、lynx；
 
 =================================
 sudo yum inst
+=======
+
+
+sudo yum install samba*
