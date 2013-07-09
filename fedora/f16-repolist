@@ -204,3 +204,16 @@ elinux.org
 
 
 sudo yum install unrar
+=================================
+"作为Linuxer，必须具备一定的CLI操作能力。
+有时候用CLI会比用GUI会更方便快捷。以下列出
+我所知道的一些常用CLI软件，比如：中文终端
+主要解决方案zhcon和fbterm；多窗口管理神器
+tmux；文件管理器ranger和mc；任务管理器htop；
+音乐播放器moc；视频播放器mplayer；PDF/图片查看器fbida；
+截图工具fbgrab；文本编辑器vim、emacs；IM软件finch；
+IRC聊天工具irssi；网页浏览器w3m、lynx；
+下载工具wget、axel、aria2c；Shell:zsh和bash；"
+
+=================================
+sudo yum inst
