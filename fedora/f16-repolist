@@ -177,6 +177,9 @@ BEGIN failed--compilation aborted at external/webkit/Source/WebCore/make-hash-to
 make[2]: *** [out/target/product/gionee89_dwe_jb2/obj/STATIC_LIBRARIES/libwebcore_intermediates/Source/WebCore/html/DocTypeStrings.cpp] 错误 2
 make[2]: *** 正在等待未完成的任务....
 target Generated: libwebcore <= external/webkit/Source/WebCore/platform/ColorData.gperf
+
+
+
 Can't locate Switch.pm in @INC (@INC contains: /usr/local/lib64/perl5 /usr/local/share/perl5 /usr/lib64/perl5/vendor_perl /usr/share/perl5/vendor_perl /usr/lib64/perl5 /usr/share/perl5 .) at external/webkit/Source/WebCore/make-hash-tools.pl line 23.
 BEGIN failed--compilation aborted at external/webkit/Source/WebCore/make-hash-tools.pl line 23.
 make[2]: *** [out/target/product/gionee89_dwe_jb2/obj/STATIC_LIBRARIES/libwebcore_intermediates/Source/WebCore/platform/ColorData.cpp] 错误 2
@@ -221,3 +224,15 @@ sudo yum inst
 
 
 sudo yum install samba*
+
+
+
+安 装工具
+http://wenku.baidu.com/view/6d14650090c69ec3d5bb75aa.html
+
+
+
+
+
+
+
