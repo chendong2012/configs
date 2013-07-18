@@ -390,3 +390,19 @@ http://www.it165.net/embed/html/201207/2076.html
 
 录电视
 http://www.techradar.com/news/computing/pc/tv-on-raspberry-pi-watch-and-record-live-tv-1151587#null
+
+基于网页的GPIO控制
+https://github.com/NeonHorizon/berryio
+
+
+
+
+FAT 格式U盘 mount 本身就能支持，但如果你的U盘或移动硬盘使用的是 exFAT 格式，mount 会说不支持。没关系，安装 exfat-fuse 软件之后 mount 就支持了。
+
+sudo apt-get install exfat-fuse
+
+
+
+
+RASPBERRY PI 对手
+http://www.designspark.com/blog/content-27
