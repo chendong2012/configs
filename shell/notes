@@ -61,3 +61,66 @@ for ((i=0;i<num;i++)) {
 你可以创建安一个内存盘
 mkdir /ram
 mount -t tmpfs -o size=10m,mode=0777 tmpfs /rem
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#!/bin/bash
+customer_project=XXXXX
+prjpath=yyy
+tar zxf ${prjpath}/${customer_project}_GPL.tar.gz
+cat ${prjpath}/${customer_project}_INHOUSE.tar.gz* | tar zxf -
+
+Verify the integrity of downloaded packages
+MD5 (Message-Digest Algorithm) is a widely used cryptographic hash function, which can help to check data integrity
+Please follow following steps to verify the integrity of downloaded package
+ 1)  Put all downloaded packages in the same folder
+
+ 2) Check file ${customer_project}.md5 is in the same folder
+
+ 3) Run command md5sum to verify packages integrity
+     e.g. md5sum -c ${customer_project}.md5
+
+ 4) md5sum will check packages integrity sequentially
+
+ 5) If packages integrity are correct, the screen will show OK message
+     e.g. ${customer_project}_GPL.tar.gz: OK
+
+Steps for building project
+ 1) Untar ${customer_project}_GPL.tar.gz to Folder A
+     e.g. tar zxf ${customer_project}_GPL.tar.gz
+
+ 2) Untar ${customer_project}_INHOUSE.tar.gz and overwrite to Folder A
+     e.g.  cat ${customer_project}_INHOUSE.tar.gz* | tar zxf -
+
+ 3) build modem image: please refer to "Build_Configure_Modem_MOLY" sheet
+
+ 4) copy modem folder to alps/mediatek/custom/common/modem/${modem}
+
+ 5) open alps/mediatek/config/${project}/ProjectConfig.mk
+ 
+ 3) set CUSTOM_MODEM=${modem}
+
+ 7) Run command to build target project,  e.g. "./makeMtk ${project} new"
+
+Version of ALPS.JB3.MP supports project package set
+ please refer to "Project_Package_Set_MT6582" sheet 
+
+Major switchable features
+ please refer to "Switchable_Features" sheet
+
+Operator switchable features
+ please refer to "Switchable_Operators" sheet
+
+Steps for building & configuring modems
+ please refer to "Build_Configure_Modem_MOLY" sheet 
+
+Naming rules for ALPS & MD version
+ please refer to "Naming_Rules" sheet
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+
+

@@ -11,3 +11,6 @@
 ：tfirst  到第一个匹配
 
 ：tlast 到最后一个匹配
+
+如何安装taglist
+到~/.vim 然后，运行unzip taglist.zip
