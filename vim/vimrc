@@ -102,3 +102,16 @@ set fileencodings=utf-8,gbk
 imap zd <c-r>=strftime("20%y-%m-%d")<cr>
 au BufWinLeave * silent mkview
 au BufWinEnter * silent loadview
+highlight search  ctermbg=darkgreen
+"highlight comment ctermfg=darkgray
+"highlight constant ctermfg=darkblue
+"highlight Identifier ctermfg=black   " html     <  and   />
+"highlight search  ctermbg=lightYellow  ctermfg=black
+"highlight Special ctermfg=Gray
+"highlight Statment ctermfg=red ctermbg=yellow
+"highlight Function ctermfg=darkGray   "  begin tag wickets  ,   =
+"highlight Type ctermfg=Darkgray
+"highlight Question ctermfg=red ctermbg=blue
+"highlight NonText ctermfg=darkGray
+"highlight PreProc ctermfg=darkGray
+"highlight htmlTitle ctermfg=DarkGray 
