@@ -1,0 +1,7 @@
+http://www.360doc.com/content/10/0628/11/36491_35705864.shtml
+ # mount -t debugfs debugfs /debug
+ # echo 1 > /debug/tracing/tracing_enabled; 
+echo function_graph > /debug/tracing/current_tracer;
+echo "ddstart" > /debug/tracing/trace_marker; 
+dd if=/dev/sda of=/dev/null bs=1k count=5000 skip=2000; 
+echo "ddstop" > /debug/tracing/trace_marker; echo 0 >tracing_enabled

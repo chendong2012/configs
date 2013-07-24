@@ -20,6 +20,15 @@ echo "m" > /proc/sysrq-trigger
 echo "p" > /proc/sysrq-trigger
 # 导出线程状态信息 （Outputs a list of processes to the console）
 echo "t" > /proc/sysrq-trigger
+
+
+
+
+
+
+
+画图
+http://blog.csdn.net/unbutun/article/details/2828786
 # 故意让系统崩溃 （ Crashes the system without first unmounting file systems or syncing disks attached to the system）
 echo "c" > /proc/sysrq-trigger
 # 立即重新挂载所有的文件系统 （Attempts to sync disks attached to the system）
