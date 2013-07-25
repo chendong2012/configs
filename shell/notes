@@ -130,3 +130,6 @@ Naming rules for ALPS & MD version
 [chend@localhost calltree-2.3]$ find . -name "*.h" -print0 | xargs -0 sed -i 's/fexecve/fexecve_calltree/g'
 [chend@localhost calltree-2.3]$ find . -name "*.c" -print0 | xargs -0 sed -i 's/fexecve/fexecve_calltree/g'
 
+callfast
+http://www.bwkeji.com/a/wangzhanjichu/shujuku/20130704/31748.html
+再来看产生这个成果的号令，"find . -name "*.[c|h]" -exec grep getline -nH {} ;"。有点乱，我们一段一段看。

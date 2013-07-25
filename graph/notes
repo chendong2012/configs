@@ -1,0 +1,11 @@
+calltree list=ltr558_i2c_probe -b -np gn_liteon_ltr558_auto/gn_ltr558.c hwmsen/*.c | ./tree2dot.sh > c.dot
+										dot -Tpdf c.dot -o c.pdf
+
+										http://oss.lzu.edu.cn/old/modules/newbb/viewtopic.php?forum=51&topic_id=1403&post_id=5742&order=0&viewmode=thread&pid=0&PHPSESSID=rvkv0vu53apri3n2miimvvaji3
+
+$ cd linux-0.11
+$ calltree -b -np -m `find ./init -name "*.c"` | tree2dot.sh > init.dot
+$ dot -Tjpg init.dot -o init.jpg
+
+介绍TREE2DOT的来源
+http://www.verydemo.com/demo_c128_i139074.html
