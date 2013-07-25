@@ -124,3 +124,9 @@ Naming rules for ALPS & MD version
 
 
 
+如何全局替换的方法
+[chend@localhost calltree-2.3]$ find . -name "*.c" -print0 | xargs -0 sed -i 's/getline/getline_calltree/g'
+[chend@localhost calltree-2.3]$ find . -name "*.h" -print0 | xargs -0 sed -i 's/getline/getline_calltree/g'
+[chend@localhost calltree-2.3]$ find . -name "*.h" -print0 | xargs -0 sed -i 's/fexecve/fexecve_calltree/g'
+[chend@localhost calltree-2.3]$ find . -name "*.c" -print0 | xargs -0 sed -i 's/fexecve/fexecve_calltree/g'
+

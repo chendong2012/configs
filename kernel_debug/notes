@@ -44,3 +44,9 @@ arm-linux-gnueabi-objdump -D vmlinux > kernel_dump.txt
 
 如何利用API打出所有的STACK出来。
 http://www.kgdb.info/linuxdev/backtrace_without_gdb/
+
+
+linux docs
+http://man.chinaunix.net/tech/lyceum/linuxK/tlk.html
+
+
