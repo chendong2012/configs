@@ -1,0 +1,54 @@
+digraph G{
+	rankdir=LR;
+	ratio=fill;
+	node [style=filled]
+
+	"defined [gn_liteon_ltr558_auto/gn_ltr558.c:1735]" -> "defined [gn_liteon_ltr558_auto/gn_ltr558.c:1735] ....";
+	"ltr558_als_enable [gn_liteon_ltr558_auto/gn_ltr558.c:565]" -> "hwmsen_write_byte";
+	"ltr558_als_enable [gn_liteon_ltr558_auto/gn_ltr558.c:565]" -> "mdelay";
+	"ltr558_create_attr [gn_liteon_ltr558_auto/gn_ltr558.c:1491]" -> "APS_ERR [gn_liteon_ltr558_auto/gn_ltr558.c:114]";
+	"ltr558_create_attr [gn_liteon_ltr558_auto/gn_ltr558.c:1491]" -> "driver_create_file";
+	"ltr558_i2c_probe" -> "APS_ERR [gn_liteon_ltr558_auto/gn_ltr558.c:114]";
+	"ltr558_i2c_probe" -> "APS_FUN [gn_liteon_ltr558_auto/gn_ltr558.c:113]";
+	"ltr558_i2c_probe" -> "APS_LOG [gn_liteon_ltr558_auto/gn_ltr558.c:121]";
+	"ltr558_i2c_probe" -> "atomic_set";
+	"ltr558_i2c_probe" -> "BUG_ON";
+	"ltr558_i2c_probe" -> "defined [gn_liteon_ltr558_auto/gn_ltr558.c:1735]";
+	"ltr558_i2c_probe" -> "get_cust_alsps_hw_ltr558";
+	"ltr558_i2c_probe" -> "hwmsen_attach";
+	"ltr558_i2c_probe" -> "i2c_detach_client";
+	"ltr558_i2c_probe" -> "i2c_set_clientdata";
+	"ltr558_i2c_probe" -> "INIT_DELAYED_WORK";
+	"ltr558_i2c_probe" -> "kfree";
+	"ltr558_i2c_probe" -> "kzalloc";
+	"ltr558_i2c_probe" -> "ltr558_create_attr [gn_liteon_ltr558_auto/gn_ltr558.c:1491]";
+	"ltr558_i2c_probe" -> "ltr558_init_client [gn_liteon_ltr558_auto/gn_ltr558.c:1058]";
+	"ltr558_i2c_probe" -> "memcpy";
+	"ltr558_i2c_probe" -> "memset";
+	"ltr558_i2c_probe" -> "misc_deregister";
+	"ltr558_i2c_probe" -> "misc_register";
+	"ltr558_i2c_probe" -> "register_early_suspend";
+	"ltr558_init_client [gn_liteon_ltr558_auto/gn_ltr558.c:1058]" -> "APS_ERR [gn_liteon_ltr558_auto/gn_ltr558.c:114]";
+	"ltr558_init_client [gn_liteon_ltr558_auto/gn_ltr558.c:1058]" -> "APS_FUN [gn_liteon_ltr558_auto/gn_ltr558.c:113]";
+	"ltr558_init_client [gn_liteon_ltr558_auto/gn_ltr558.c:1058]" -> "i2c_get_clientdata";
+	"ltr558_init_client [gn_liteon_ltr558_auto/gn_ltr558.c:1058]" -> "ltr558_init_device [gn_liteon_ltr558_auto/gn_ltr558.c:592]";
+	"ltr558_init_client [gn_liteon_ltr558_auto/gn_ltr558.c:1058]" -> "ltr558_setup_eint [gn_liteon_ltr558_auto/gn_ltr558.c:1034]";
+	"ltr558_init_device [gn_liteon_ltr558_auto/gn_ltr558.c:592]" -> "APS_ERR [gn_liteon_ltr558_auto/gn_ltr558.c:114]";
+	"ltr558_init_device [gn_liteon_ltr558_auto/gn_ltr558.c:592]" -> "hwmsen_write_byte";
+	"ltr558_init_device [gn_liteon_ltr558_auto/gn_ltr558.c:592]" -> "ltr558_als_enable [gn_liteon_ltr558_auto/gn_ltr558.c:565]";
+	"ltr558_init_device [gn_liteon_ltr558_auto/gn_ltr558.c:592]" -> "ltr558_ps_enable [gn_liteon_ltr558_auto/gn_ltr558.c:515]";
+	"ltr558_init_device [gn_liteon_ltr558_auto/gn_ltr558.c:592]" -> "mdelay";
+	"ltr558_ps_enable [gn_liteon_ltr558_auto/gn_ltr558.c:515]" -> "hwmsen_write_byte";
+	"ltr558_ps_enable [gn_liteon_ltr558_auto/gn_ltr558.c:515]" -> "mdelay";
+	"ltr558_setup_eint [gn_liteon_ltr558_auto/gn_ltr558.c:1034]" -> "APS_FUN [gn_liteon_ltr558_auto/gn_ltr558.c:113]";
+	"ltr558_setup_eint [gn_liteon_ltr558_auto/gn_ltr558.c:1034]" -> "i2c_get_clientdata";
+	"ltr558_setup_eint [gn_liteon_ltr558_auto/gn_ltr558.c:1034]" -> "mt65xx_eint_registration";
+	"ltr558_setup_eint [gn_liteon_ltr558_auto/gn_ltr558.c:1034]" -> "mt65xx_eint_set_hw_debounce";
+	"ltr558_setup_eint [gn_liteon_ltr558_auto/gn_ltr558.c:1034]" -> "mt65xx_eint_set_polarity";
+	"ltr558_setup_eint [gn_liteon_ltr558_auto/gn_ltr558.c:1034]" -> "mt65xx_eint_set_sens";
+	"ltr558_setup_eint [gn_liteon_ltr558_auto/gn_ltr558.c:1034]" -> "mt65xx_eint_unmask";
+	"ltr558_setup_eint [gn_liteon_ltr558_auto/gn_ltr558.c:1034]" -> "mt_set_gpio_dir";
+	"ltr558_setup_eint [gn_liteon_ltr558_auto/gn_ltr558.c:1034]" -> "mt_set_gpio_mode";
+	"ltr558_setup_eint [gn_liteon_ltr558_auto/gn_ltr558.c:1034]" -> "mt_set_gpio_pull_enable";
+	"ltr558_setup_eint [gn_liteon_ltr558_auto/gn_ltr558.c:1034]" -> "mt_set_gpio_pull_select";
+}

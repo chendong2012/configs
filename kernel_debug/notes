@@ -20,15 +20,6 @@ echo "m" > /proc/sysrq-trigger
 echo "p" > /proc/sysrq-trigger
 # 导出线程状态信息 （Outputs a list of processes to the console）
 echo "t" > /proc/sysrq-trigger
-
-
-
-
-
-
-
-画图
-http://blog.csdn.net/unbutun/article/details/2828786
 # 故意让系统崩溃 （ Crashes the system without first unmounting file systems or syncing disks attached to the system）
 echo "c" > /proc/sysrq-trigger
 # 立即重新挂载所有的文件系统 （Attempts to sync disks attached to the system）
@@ -58,16 +49,13 @@ http://www.kgdb.info/linuxdev/backtrace_without_gdb/
 linux docs
 http://man.chinaunix.net/tech/lyceum/linuxK/tlk.html
 
-gprof
-http://en.wikipedia.org/wiki/Gprof
 
 
-CONFIG_GPROF 
-
-gprof介绍
-gprof是GNU profiler工具。可以显示程序运行的“flat profile”，包括每个函数的调用次数，每个函数消耗的处理器时间。也可以显示“调用图”，包括函数的调用关系，每个函数调用花费了多少时间。还可以显示“注释的源代码”，是程序源代码的一个复本，标记有程序中每行代码的执行次数。
-
-为gprof编译程序
-在编译或链接源程序的时候在编译器的命令行参数中加入“-pg”选项，编译时编译器会自动在目标代码中插入用于性能测试的代码片断，这些代码在程序在运行时采集并记录函数的调用关系和调用次数，以及采集并记录函数自身执行时间和子函数的调用时间，程序运行结束后，会在程序退出的路径下生成一个gmon.out文件。这个文件就是记录并保存下来的监控数据。可以通过命令行方式的gprof或图形化的Kprof来解读这些数据并对程序的性能进行分析。另外，如果想查看库函数的profiling，需要在编译是再加入“-lc_p”编译参数代替“-lc”编译参数，这样程序会链接libc_p.a库，才可以产生库函数的profiling信息。如果想执行一行一行的profiling，还需要加入“-g”编译参数。
+4. LXR
+     Linux超文本交叉代码检索工具LXR（Linux Cross Reference），是由挪威奥斯陆大学数学系Arne Georg Gleditsch和Per Kristian Gjermshus编写的。这个工具实际上运行在Linux或者Unix平台下，通过对源代码中的所有符号建立索引，从而可以方便的检索任何一个符号，包括函数、外部变量、文件名、宏定义等等。不仅仅是针对Linux源代码，对于C语言的其他大型的项目，都可以建立其lxr站点，以提供开发者查询代码，以及后继开发者学习代码。 　　
+          目前的lxr是专门为Linux下面的Apache服务器设计的，通过运行perl脚本，检索源代码索引文件，将数据发送到网络客户端的Web浏览器上。任何一种平台上的Web浏览器都可以访问，这就方便了习惯在Windows平台下工作的用户。 关于lxr的英文网站为
+	  http://lxr.linux.no/
+	  ，在中国Linux论坛
+	  http://www.linuxforum.net
 
 
