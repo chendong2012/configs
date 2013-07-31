@@ -447,3 +447,18 @@ http://www.squeezeplug.eu/?page_id=52
 
 网络时间同步
 sudo apt-get install openntpd
+
+
+
+树莓派(Raspberry Pi)远程控制云台
+树莓派(Raspberry Pi)远程控制云台
+
+来自：奋斗 Blog	  |  时间：2013-07-29 15:42:00  
+
+原文链接： http://www.fendou.info/raspberry-pi-remote-control-servod/
+
+入手树莓派后，参考了网上的一些文章实现了树莓派(Raspberry Pi)远程控制云台来监控我家养的三只陆龟。 http://pi.fendou.info
+
+下面是实现过程的总结。PS：目前Gor博客内容直接Git clone 自 hugozhu ，回头有时间也会把这篇文章以markdown格式整理到上面。 
+http://www.tuicool.com/articles/nAfIje
+http://pi.fendou.info/
