@@ -1,1 +1,3 @@
 http://zhidao.baidu.com/question/166216775.html
+查以下文件在哪个包
+dpkg -S start-stop-daemon
