@@ -106,7 +106,7 @@ static struct i2c_client *ltr559_i2c_client = NULL;
 static const struct i2c_device_id ltr559_i2c_id[] = {{LTR559_DEV_NAME,0},{}};
 static struct i2c_board_info __initdata i2c_ltr559={ I2C_BOARD_INFO(LTR559_DEV_NAME, LTR559_I2C_SLAVE_ADDR)};
 
-static int ltr559_enable_ps(struct i2c_client *client, bool enable);  
+static int ltr559_enable_ps(struct i2c_client *client, bool enable);
 
 static struct ltr559_priv *g_ltr559_ptr = NULL;
 
@@ -350,10 +350,10 @@ int ltr559_init_device(struct i2c_client *client)
 #ifdef GN_MTK_BSP_ALSPS_INTERRUPT_MODE
 	if (hwmsen_write_byte(client, APS_RW_INTERRUPT, 0x01)) goto error_init_device;
 	if (hwmsen_write_byte(client, APS_RW_INTERRUPT_PERSIST, 0x40)) goto error_init_device;
-#endif 
+#endif
 	if (hwmsen_write_byte(client, APS_RW_PS_N_PULSES, 0x02)) goto error_init_device;
 	if (hwmsen_write_byte(client, APS_RW_PS_LED, 0xff)) goto error_init_device;
-#ifdef CALIBRATE_IN_PSENABLE	
+#ifdef CALIBRATE_IN_PSENABLE
 #else
 	if (hwmsen_write_byte(client, APS_RW_PS_THRES_UP_0, PS_THRES_UP_0_VALUE)) goto error_init_device;
 	if (hwmsen_write_byte(client, APS_RW_PS_THRES_UP_1, PS_THRES_UP_1_VALUE)) goto error_init_device;
@@ -564,7 +564,7 @@ static void ltr559_eint_work(struct work_struct *work)
 				if (hwmsen_write_byte(obj->client,APS_RW_PS_THRES_UP_1,PS_THRES_UP_1_VALUE)) goto error_rw;
 			#endif
 			} else if (ps_cali.valid == 1) {
-				if (hwmsen_write_byte(obj->client,APS_RW_PS_THRES_UP_0, ps_cali.close & 0x00ff)) goto error_rw;    
+				if (hwmsen_write_byte(obj->client,APS_RW_PS_THRES_UP_0, ps_cali.close & 0x00ff)) goto error_rw;
 				if (hwmsen_write_byte(obj->client,APS_RW_PS_THRES_UP_1, ((ps_cali.close)>> 8) & 0x07)) goto error_rw;
 			}
 #else
@@ -611,7 +611,7 @@ int ltr559_setup_eint(struct i2c_client *client)
 	mt_eint_unmask(CUST_EINT_ALS_NUM);
 	return 0;
 }
-#endif 
+#endif
 //Gionee yanggy 2012-07-21 add for ps_interrupt mode end
 /*----------------------------------------------------------------------------*/
 static int ltr559_init_client(struct i2c_client *client)
@@ -755,7 +755,7 @@ static ssize_t ltr559_show_ps_raw(struct device_driver *ddri, char *buf)
 
 	if (res = ltr559_read_data_ps(ltr559_obj->client, &ltr559_obj->ps)) {
 		snprintf(buf, PAGE_SIZE, "ERROR: %d\n", res);
-	} else {   
+	} else {
 		dat = ltr559_obj->ps & 0x80;
 		data = dat & 0x0000FFFF;
 		dat = ltr559_get_ps_value(ltr559_obj, ltr559_obj->ps);
@@ -1070,7 +1070,7 @@ static int ltr559_get_ps_value(struct ltr559_priv *obj, int ps)
 	//Gionee mali add calibration for ltr559 2012-9-28 begin
 #if defined(GN_PS_NEED_CALIBRATION)
 	APS_LOG(" ps=%x,ps_cali.far_away = %x , ps_cali.close = %x ,ps_valid = %x \n", ps, ps_cali.far_away, ps_cali. close, ps_cali.valid);
-	if (ps_cali.valid == 1) {   
+	if (ps_cali.valid == 1) {
 		if (ps > ps_cali.close) {
 			val = 0;
 			val_temp = 0;
@@ -1120,7 +1120,7 @@ static int ltr559_calibrate_inPsEnable(void)
 	int err = 0;
 	hwm_sensor_data sensor_data;
 
-	if (!ltr559_obj) { 
+	if (!ltr559_obj) {
 		APS_ERR("ltr559_obj is null!!\n");
 		//len = sprintf(buf, "ltr501_obj is null\n");
 		//goto report_value;
@@ -1155,7 +1155,7 @@ static int ltr559_calibrate_inPsEnable(void)
 		proximity_low = noise + 70;
 	} else if(noise < 200) {
 		proximity_high = noise + 120;
-		proximity_low = noise + 110; 
+		proximity_low = noise + 110;
 	} else if(noise < 1000) {
 		proximity_high = noise + 300;
 		proximity_low = noise + 280;	
@@ -1184,7 +1184,7 @@ static int ltr559_calibrate_inPsEnable(void)
 static ltr559_WriteCalibration(struct PS_CALI_DATA_STRUCT *data_cali)
 {
 	if (data_cali->valid ==1){
-		ps_cali.close = data_cali->close; 
+		ps_cali.close = data_cali->close;
 		ps_cali.far_away = data_cali->far_away;
 		ps_cali.valid = 1;
 
@@ -1193,7 +1193,7 @@ static ltr559_WriteCalibration(struct PS_CALI_DATA_STRUCT *data_cali)
 		hwmsen_write_byte(ltr559_obj->client, 0x92, (ps_cali.far_away)& 0x00ff);
 		hwmsen_write_byte(ltr559_obj->client, 0x93, ((ps_cali.far_away)>>8)&0x07);
 	} else {
-		ps_cali.valid = 0; 
+		ps_cali.valid = 0;
 		#ifdef CALIBRATE_IN_PSENABLE
 			hwmsen_write_byte(ltr559_obj->client, 0x90, proximity_high & 0xff);
 			hwmsen_write_byte(ltr559_obj->client, 0x91, (proximity_high >> 8) & 0xff);
@@ -1223,7 +1223,7 @@ static int ltr559_read_data_for_cali(struct i2c_client *client,struct PS_CALI_DA
 	int j = 0;
 	hwm_sensor_data sensor_data;
 
-	if (!ltr559_obj) { 
+	if (!ltr559_obj) {
 		APS_ERR("ltr559_obj is null!!\n");
 		len = sprintf(buf, "ltr501_obj is null\n");
 		goto report_value;
@@ -1276,7 +1276,7 @@ static int ltr559_read_data_for_cali(struct i2c_client *client,struct PS_CALI_DA
 			ps_data_cali->close = 0;
 			ps_data_cali->far_away = 0;
 		} else {
-			ps_data_cali->close = noise + NOISE_HIGH; 
+			ps_data_cali->close = noise + NOISE_HIGH;
 			ps_data_cali->far_away = noise + NOISE_LOW;
 			ps_data_cali->valid = 1;
 
@@ -1468,13 +1468,13 @@ static long ltr559_unlocked_ioctl(struct file *file, unsigned int cmd,unsigned l
 			if (dat == NULL) {
 				APS_LOG("dat == NULL\n");
 				err = -EINVAL;
-				break;    
+				break;
 			}
 
 			if (copy_from_user(&ps_cali_temp, dat, sizeof(ps_cali_temp))) {
 				APS_LOG("copy_from_user\n");
 				err = -EFAULT;
-				break;    
+				break;
 			}
 
 			ltr559_WriteCalibration(&ps_cali_temp);
@@ -1502,7 +1502,7 @@ static long ltr559_unlocked_ioctl(struct file *file, unsigned int cmd,unsigned l
 			if (copy_to_user(ptr, &ps_cali_temp, sizeof(ps_cali_temp))) {
 				err = -EFAULT;
 				goto err_out;
-			}              
+			}
 			APS_LOG("ltr559 ALSPS_GET_PS_CALI %d,%d,%d\t",ps_cali_temp.close, ps_cali_temp.far_away,ps_cali_temp.valid);
 			break;
 #endif
@@ -1708,7 +1708,7 @@ int ltr559_ps_operate(void* self, uint32_t command, void* buff_in, int size_in,
 					APS_ERR("SENSOR_GET_DATA^^^^^^^^^^!\n");
 					err = -1;
 					break;
-				} else { 
+				} else {
 					while(-1 == ltr559_get_ps_value(obj, obj->ps)) {
 						ltr559_read_data_ps(obj->client, &obj->ps);
 						msleep(50);
@@ -2003,7 +2003,7 @@ static int ltr559_local_init(void)
 #else
 static int ltr559_probe(struct platform_device *pdev)
 {
-	struct alsps_hw *hw = get_cust_alsps_hw_ltr559();      
+	struct alsps_hw *hw = get_cust_alsps_hw_ltr559();
 	ltr559_power(hw, 1);
 	if (i2c_add_driver(&ltr559_i2c_driver)) {
 		APS_ERR("i2c_add_driver add driver error %d\n",__LINE__);
