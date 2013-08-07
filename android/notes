@@ -3,6 +3,13 @@ no1:
 在哪个地方下载
 http://developer.android.com/tools/sdk/ndk/index.html
 
+
+
+如何编译ndk
+ndk-build NDK_APPLICATION_MK=/opt/tools/hello/jni/Application.mk NDK_PROJECT_PATH=/opt/tools/hello
+NDK_APPLICATION_MK:对应应用的MK文件，要放到JNI目录下
+NDK_PROJECT_PATH:对应项目的目录
+
 no2:
 
 
