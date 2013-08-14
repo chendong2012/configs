@@ -59,3 +59,10 @@ http://man.chinaunix.net/tech/lyceum/linuxK/tlk.html
 	  http://www.linuxforum.net
 
 
+
+内核编译出错的例子，是因为少了一个大括号
+	  昨天遇到一个莫名其妙的编译错误，以前没有见过，而且代码流程看起来也没有太多的奇异之处。后来忍无可忍，百度了下，发现别人也有遇到这个错误的，他的解决方法是：少了“}”。
+	  嘿嘿，我开始跟踪每一个函数，终于找到了这个地方。对的。就是因为少了一个“}”。所以要注意了，仔细仔细哈。下面就是make后出现的错误：
+	  xxxxx.c:100: error: invalid storage class for function 'xxxxxxx'
+
+
