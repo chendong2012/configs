@@ -34,3 +34,30 @@ Jetty 是一个开源的servlet容器，它为基于Java的web内容，例如JSP
 
 phoneGap 插件:
 
+================================================================================================
+================================================================================================
+http://www.iooly.com/article/25.html
+Android下脱离Voice Search语音识别
+
+
+ 最近在做一款Android下的语音识别软件。Android下面的语音识别做起来很容易，只需要调用Google的Voice Search就可以了，具体方法如下：
+
+ http://www.cnblogs.com/TerryBlog/archive/2010/11/12/1875875.html
+
+ 使用Voice Search提供的接口虽然能很方便地实现语音识别，但是却要额外安装2M多的Voice Search，很不方便。能不能不借助Voice Search实现语音识别呢？
+
+ Voice Search的语音识别是在云端识别的，那么必然就有网络接口，只是Google没有公开而已。使用强大的Google搜索了一下，还真发现了一篇介绍这个接口的文章：http://blog.csdn.net/dlangu0393/article/details/7214728。
+
+ 根据文章的描述，Gogole语音识别的网络接口地址是：
+
+ http://www.google.com/speech-api/v1/recognize?xjerr=1&client=chromium&lang=zh-CN&maxresults=1
+
+ 这个接口在国外应该可以，但是在国内就要把www.google.com换成www.google.com.hk,于是接口地址改成这样：
+
+ http://www.google.com.hk/speech-api/v1/recognize?xjerr=1&client=chromium&lang=zh-CN&maxresults=1（其中lang参数表示的是语言类型，maxresults表示的是最多返回多少个结果） 
+================================================================================================
+================================================================================================
+
+
+
+
