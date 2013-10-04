@@ -60,3 +60,15 @@ Android下脱离Voice Search语音识别
 
 androd 系统分析工具，with csv graphics
 https://github.com/NetEase/Emmagee/tree/master/src
+
+
+
+如何修改库名：
+.project:
+<projectDescription>
+        <name>ViewPagerIndicatorlibrary</name>
+	        <comment></comment>
+
+pom.xml
+<artifactId>ViewPagerIndicatorlibrary</artifactId>
+
