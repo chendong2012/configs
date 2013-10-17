@@ -82,3 +82,53 @@ Wireshark
 Wireshark, 前身是 Ethereal ，是一个网络协议检测程序，让您经由程序抓取运行的网站的相关资讯，包括每一封包流向及其内容、资讯可依操作系统语系看出,方便查看、监控TCP session动态等等.
 
 这里罗列的是大多数最有价值的 Linux 监控程序，当然，你可能还会使用其他的工具，不妨跟大家分享下。
+
+
+
+sudo netstat -altp |grep 8000
+
+
+
+
+1.  查看端口占用情况的命令：lsof -i
+    [root@www ~]# lsof -i
+     
+    COMMAND PID USER FD TYPE DEVICE SIZE NODE NAME
+    nginx 2333 root 6u IPv4 6242 TCP *:http (LISTEN)
+    nginx 2334 www 6u IPv4 6242 TCP *:http (LISTEN)
+    sshd 2349 root 3u IPv6 6283 TCP *:ndmp (LISTEN)
+    sshd 2349 root 4u IPv6 6286 TCP *:ssh (LISTEN)
+
+这里返回了Linux当前所有打开端口的占用情况。
+第一段是进程，最后一列是侦听的协议、侦听的IP与端口号、状态。
+如果端口号是已知的常用服务（如80、21等），则会直接显示协议名称，如http、ftp、ssh等。
+
+ 
+2. 查看某一端口的占用情况： lsof -i:端口号
+    [root@www ~]# lsof -i:21
+     
+    COMMAND PID USER FD TYPE DEVICE SIZE NODE NAME
+    pure-ftpd 2651 root 4u IPv4 7047 TCP *:ftp (LISTEN)
+    pure-ftpd 2651 root 5u IPv6 7048 TCP *:ftp (LISTEN)
+
+这里显示出21号端口正在被pure-ftpd使用，状态是listen。
+
+3. 查看某进程占用的端口号
+ netstat -anp
+ [root@www ~]# netstat -anp | grep syslog
+  udp        0      0 0.0.0.0:514                 0.0.0.0:*                               31483/syslogd 
+ 
+4. 查看某端口被占用的进程
+ [root@nbatest ~]# netstat -altp |grep 9999
+  tcp        0      0 0.0.0.0:9999                0.0.0.0:*                   LISTEN      16315/gate_applicat
+ 
+5. 一进程确定占用某一tcp端口，如下命令可以杀掉该进程。
+    kill -9 $(netstat -tlnp|grep 9999|awk '{print $7}'|awk -F '/' '{print $1}')
+
+6. 结束占用端口的进程：killall 进程名
+
+虽然我们不建议用这种本末倒置的方法来解决冲突问题，
+但某些情况下还是可以直接结束掉占用进程的（比如重启Apache时进程没有完全退出，导致重启失败）
+[root@www ~]# killall application
+
+这样，所有的application进程都会被结束掉。
