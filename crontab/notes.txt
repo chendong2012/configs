@@ -36,3 +36,27 @@ rsyslog>>>>>>
 1. 修改rsyslog文件，将/etc/rsyslog.d/50-default.conf 文件中的#cron.*前的#删掉；
 2. 重启rsyslog服务service rsyslog restart
 3. 重启cron服务service cron restart
+
+
+
+    Linux下普通用户无法直接使用crontab问题
+
+    2010-06-10 13:52:56     我来说两句       
+    收藏    我要投稿 
+
+     
+
+    问题情况：使用的一个Linux服务器中有一台至始至终crontab无法在普通用户下执行，执行时总是提示错误：seteuid: Operation not permitted，要使用crontab还要切换到root用户下，再执行crontab -u username -e来编辑，后来通过google搜索到问题在于文件权限的问题，文件/usr/bin/crontab没有特权。
+
+    解决方法：改过前的权限是
+
+    -rwxr-xr-x 1 root root 70592 Jul 12 2005 /usr/bin/crontab
+
+    改过后的权限是
+
+    -rwsr-xr-x 1 root root 70592 Jul 12 2005 /usr/bin/crontab
+
+    因为crontab要使用到除了crontab之外的其他文件，而那些文件普通用户是没有更改权限的，那么现在就需要增加他对文件系统的特权，让可以对其它文件也有更改权限，更改上面的方法是先切换到root用户下再执行
+
+    chmod u+s /usr/bin/crontab
+
