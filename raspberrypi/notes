@@ -444,6 +444,11 @@ zabbix简介
 http://www.techradar.com/news/digital-home/media-servers/use-raspberry-pi-to-stream-to-any-device-with-squeezeplug-1154688
 http://www.squeezeplug.eu/?page_id=52
 
+http://www.eeboard.com/bbs/thread-5157-1-1.html
+http://squeezeplug.de/
+
+sudo iptables -A INPUT -p tcp -d 0/0 -s 0/0 --dport 6600 -j ACCEPT
+
 
 网络时间同步
 sudo apt-get install openntpd
@@ -497,3 +502,4 @@ Music Player Daemon
 发行版本
 http://www.raspyfi.com/raspyfi-user-manual/
 http://www.raspberrypi.org/phpBB3/viewtopic.php?f=28&t=13572
+
