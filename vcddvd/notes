@@ -1,0 +1,4 @@
+1。安装vcdimager.
+sudo apt-get install vcdimager
+2. 在终端中执行
+vcdxrip -C /dev/cdrom 
