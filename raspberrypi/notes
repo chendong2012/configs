@@ -513,3 +513,6 @@ Z-Wave Controller Setup on My Raspberry Pi
 Z-wav是由芯片与软件开发商Zensys与另外多家组建的一个新的联盟---Z-Wave联盟，以推动在家庭自动化领域采用Z-Wave协议。
      简单的说，z-wave就是把家庭的产品装一个z-wave的无线协议的装置，把家庭产品，如灯组成一个网络，利用此网络控制传递信息。
            本人开发智能家庭产品十多年，精通z-wave。精通产品开发，Please contact me :      w130130@163.com  or QQ:75802077 
+
+如何编译无线网卡
+http://www.chriszh.com/?p=562
