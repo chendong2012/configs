@@ -230,9 +230,4 @@ sudo yum install samba*
 安 装工具
 http://wenku.baidu.com/view/6d14650090c69ec3d5bb75aa.html
 
-
-
-
-
-
-
+sudo yum install  p7zip p7zip-full p7zip-rar
