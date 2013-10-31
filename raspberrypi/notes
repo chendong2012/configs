@@ -91,7 +91,7 @@ http://www.cnblogs.com/ma6174/archive/2013/01/25/2875617.html
 
 
 http://blog.crackcell.com/posts/2012/09/13/rpi_setup.html
-dd if=2012-08-16-wheezy-raspbian.img of=/dev/sdX
+dd bs=1m if=2012-08-16-wheezy-raspbian.img of=/dev/sdX
 我用的8G的sd卡，镜像的系统没有充满整张卡，所以使用gparted扩展了第2个ext4分区。 
 用无线网卡tplink
 
