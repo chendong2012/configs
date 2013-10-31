@@ -1,0 +1,2 @@
+http://raspberrypi.diandian.com/post/2013-01-03/40047523120
+XBMC中文插件开源项目（xbmc-addons-chinese）
