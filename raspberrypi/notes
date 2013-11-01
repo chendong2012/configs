@@ -529,3 +529,10 @@ http://bbs.shumeipai.org/thread-22-1-1.html
 raspberry pi hub 
 69441899
 我记得前两天因为电脑死机，确实没能够批准几位网友进群，非常抱歉。您可以试着再加一下。
+
+
+
+
+//启动花生壳
+xbian 里面
+./rc.local:13:/home/xbian/oray/phddns-2.0.5.19225/src/phddns -c /etc/phlinux.conf -d
