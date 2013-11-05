@@ -60,3 +60,7 @@ rsyslog>>>>>>
 
     chmod u+s /usr/bin/crontab
 
+
+
+    0,30 18-23 * * * /usr/local/etc/rc.d/lighttpd restart
+    上面的例子表示在每天18 : 00至23 : 00之间每隔30分钟重启apache。
