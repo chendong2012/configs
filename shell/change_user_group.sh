@@ -1,4 +1,5 @@
 #!/bin/bash
+# 将用户添加到附加组。
 echo "first para is user, second para is group"
 if [ $# != 2 ]; then
 echo "first para is user, second para is group"
