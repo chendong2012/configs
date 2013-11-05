@@ -133,3 +133,13 @@ Naming rules for ALPS & MD version
 callfast
 http://www.bwkeji.com/a/wangzhanjichu/shujuku/20130704/31748.html
 再来看产生这个成果的号令，"find . -name "*.[c|h]" -exec grep getline -nH {} ;"。有点乱，我们一段一段看。
+
+
+
+
+/etc/profile
+表示的意思是：每个用户LOGIN都会去执行一次,
+	有一个特点是：进去都会执行
+	注意：X11进去后，会执行一次，再打开虚拟终端是不会去执行PROFILE的
+
+	通过SSH上去，也会去执行一次
