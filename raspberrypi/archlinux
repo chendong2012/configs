@@ -1,5 +1,6 @@
 http://www.codelast.com/?p=4945
 里面介绍了网络时间同步
 
+如果客户端/etc目录下没有localtime文件，将服务器上/etc目录下的localtime文件复制到客户端的/etc目录下
 http://blog.csdn.net/suer0101/article/details/7868813
 ntpdate

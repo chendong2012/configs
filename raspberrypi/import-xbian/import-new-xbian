@@ -1,0 +1,13 @@
+1、取出SD卡来，修改/etc/network/interfaces
+文件见附件
+连上网线，通过其它电脑连接，192.168.1.128
+然后，sudo apt-get install "zd1211-firmware"
+关机再连上无线网卡就可以了，已设定好为：192.168.1.129
+sudo apt-get install vim
+
+
+sudo apt-get update
+
+修改语言：
+/etc/default/local
+1、首先是要连上有线网线，
