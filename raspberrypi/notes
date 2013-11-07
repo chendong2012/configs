@@ -550,3 +550,41 @@ Your IP address is 121.34.146.210
 find your ipaddr
 http://whatismyipaddress.com/
 ===================================
+
+
+
+
+
+
+
+
+
+树莓派在身份证件核验领域应用
+http://blog.csdn.net/kimwu/article/details/12654517
+http://www.tuicool.com/articles/JRziMj
+
+
+
+ l       字符终端：SecureCRT软件
+
+ l       文件传输: FileZilla软件 SFTP（SSH2）传输协议
+
+ l       远程桌面：
+
+ u     Windows：VNC Viewer或UltraVNC-Viewer
+
+ u     Android：AndroidVNC
+ 
+
+
+ 3.2开发工具链
+
+ 开发语言：
+
+ G++开发底层通讯库。
+
+ 界面开发语言：本文使用GTK+（GIMP Toolkit)作开发界面
+
+ 界面设计工具：Glade
+
+ 其他可选语言：Python、Java、QT、LazarusPascal
