@@ -1,13 +1,21 @@
+0、安装系统：
+sudo dd if=./XBian_1.0_Beta_1.1.img of=/dev/sdc bs=4M
+
 1、取出SD卡来，修改/etc/network/interfaces
 文件见附件
 连上网线，通过其它电脑连接，192.168.1.128
 然后，sudo apt-get install "zd1211-firmware"
 关机再连上无线网卡就可以了，已设定好为：192.168.1.129
 sudo apt-get install vim
-
-
 sudo apt-get update
 
-修改语言：
+3、修改语言,同步网络时间
 /etc/default/local
 1、首先是要连上有线网线，
+更改时区，可以从其它电脑COPY一个过来，/etc/localtime
+
+4、使用SAMBA 服务器(nas)
+5、安装花生壳
+6、安装mplayer
+7、xbmc 的中文插件
+8、安装MPD
