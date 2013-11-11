@@ -143,3 +143,6 @@ http://www.bwkeji.com/a/wangzhanjichu/shujuku/20130704/31748.html
 	注意：X11进去后，会执行一次，再打开虚拟终端是不会去执行PROFILE的
 
 	通过SSH上去，也会去执行一次
+
+解压到指定目录
+unzip -v -d $PWD/wheezy 2013-09-25-wheezy-raspbian.zip
