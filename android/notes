@@ -76,3 +76,6 @@ pom.xml
 
 
 instagram
+
+截屏
+adb shell screencap -p | sed 's/\r$//' > screen.png
