@@ -146,3 +146,5 @@ http://www.bwkeji.com/a/wangzhanjichu/shujuku/20130704/31748.html
 
 解压到指定目录
 unzip -v -d $PWD/wheezy 2013-09-25-wheezy-raspbian.zip
+
+sudo dpkg -l | grep -i python 
