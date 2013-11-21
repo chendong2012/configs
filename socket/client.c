@@ -24,7 +24,7 @@ int main(int argc,char **argv)
 
 	bzero(&addr_ser,sizeof(addr_ser));  
 	addr_ser.sin_family=AF_INET;  
-	addr_ser.sin_addr.s_addr=htonl(inet_addr("220.231.155.86"));  
+	addr_ser.sin_addr.s_addr=inet_addr("220.231.155.86");  
 	addr_ser.sin_port=htons(PORT);  
 	printf("socket 2\n");  
 	err=connect(sockfd,(struct sockaddr *)&addr_ser,sizeof(addr_ser));  
@@ -45,7 +45,7 @@ int main(int argc,char **argv)
 		send(sockfd,sendline,strlen(sendline),0);  
 
 		printf("waiting for server...\n");  
-
+		sleep(1);
 		n=recv(sockfd,recvline,100,0);  
 		recvline[n]='\0';  
 
