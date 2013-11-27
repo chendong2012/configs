@@ -148,3 +148,5 @@ http://www.bwkeji.com/a/wangzhanjichu/shujuku/20130704/31748.html
 unzip -v -d $PWD/wheezy 2013-09-25-wheezy-raspbian.zip
 
 sudo dpkg -l | grep -i python 
+linux下nc的使用
+http://blog.sina.com.cn/s/blog_613596840100ym43.html
