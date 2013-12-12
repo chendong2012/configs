@@ -147,3 +147,11 @@ unzip -v -d $PWD/wheezy 2013-09-25-wheezy-raspbian.zip
 sudo dpkg -l | grep -i python 
 linux下nc的使用
 http://blog.sina.com.cn/s/blog_613596840100ym43.html
+
+使用sort 进行排序
+sort -n -k5  -t P
+
+-n:表示按数字来排，而不是按字符来排，
+-k:表示按第５列来分析
+-t:表示列的分隔符
+
