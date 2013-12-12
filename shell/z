@@ -1,0 +1,14 @@
+mkdir ~/code
+cd ~/code
+git clone https://github.com/rupa/z.git
+echo 'source ~/code/z/z.sh' >> ~/.zshrc
+source ~/.zshrc
+
+-r：导航到排名最高的目录
+-t：导航到最近访问的目录
+-l：按使用频率列出目录
+
+z co
+将转到 ~/code 目录。z 通过正则匹配，并带你到使用频率 最高的目录。
+z 会将你每次 cd 过的目录存起来放到 ~/.z 文件中。一旦 有了记录，就可以直接使用 z 来导航目录了，例如：
+https://linuxtoy.org/archives/z.html
