@@ -45,6 +45,9 @@ int main(int argc,char **argv)
 		send(sockfd,sendline,strlen(sendline),0);  
 
 		printf("waiting for server...\n");  
+		n=recv(sockfd,recvline,100,0);  
+		recvline[n]='\0';  
+		printf("recv data is:%s\n",recvline);  
 		sleep(1);
 		n=recv(sockfd,recvline,100,0);  
 		recvline[n]='\0';  

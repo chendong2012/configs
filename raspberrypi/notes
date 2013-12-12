@@ -272,9 +272,19 @@ sudo amixer cset numid=3 1
 ===================================================================================
 
 add 组
+
+>> sudo adduser YOURUSERIDHERE
+>> sudo usermod -a -G users YOURUSERIDHERE
+>> sudo usermod -a -G sudo YOURUSERIDHERE
+
+3）更新系统确保所有的库是最新最好的：
+
+>> sudo apt-get update; sudo apt-get upgrade
+
 sudo useradd john -m -G users
 sudo passwd john
 sudo smbpasswd -a john
+sudo smbpasswd -e xbian
 
 #如果已有pi用户，那么就直接就执行下面的创建samba pi 用户的密码
 sudo smbpasswd -a pi

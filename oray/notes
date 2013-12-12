@@ -79,3 +79,6 @@ help)
 	;;
 esac
 echo "end"	
+
+xbian 里面
+./rc.local:13:/home/xbian/oray/phddns-2.0.5.19225/src/phddns -c /etc/phlinux.conf -d
