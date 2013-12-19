@@ -478,3 +478,6 @@ update_config=1 //这个可能是更新的配置，但不确认
 新建以上的目录。
 
 如果你不的平台不出稀奇古怪的问题的话，现在你已经可以ping通你想用的ip地址咯！
+
+
+http://wenku.baidu.com/view/a579e149e45c3b3567ec8b1c.html
