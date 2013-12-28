@@ -1,0 +1,40 @@
+不知道你有没有解决：
+1.需要在make/plutommi/mmi_app/mmi_app.mak 中增加你的.c 文件及src和inc目录
+2.需要在plutommi/customer/resgenerator/makefile 中增加inc目录
+我是这样做的能行。但由于我不需要增加资源，所以不确定增加资源的方法。
+
+
+原来在6225 10A上添加过应用，现在想在6260上新增一个应用，比如FirstApp，步骤如下：
+目录一：plutommi\MMI\FirstApp
+目录二：plutommi\MMI\FirstApp\FirstAppInc
+文件列表：
+FirstAppDef.h：用于存放本程序所需要的类型，结构，常量的定义
+FirstAppProt.h：用于存放本程序中的所有函数声明，但此文件只被本文件的源程序所加载
+FirstAppGprot.h：也是用于存放函数声明，但是此文件是用于别的程序加载，即此文件中的函数声明的都是对外的接口
+FirstAppResDef.h：用于存放本资源ID的定义接口
+
+目录三：plutommi\MMI\FirstApp\FirstAppSrc
+FirstApp.c程序的主源文件
+
+目录四：plutommi\MMI\FirstApp\FirstAppRes
+
+FirstApp.res：资源文件定义，包含字串、图片、菜单、屏幕等的定义，该文件实际为一个标准xml文件
+
+ref_list_FirstApp.txt：该模块多国语言字串定义
+
+
+2、将文件加入项目
+在6225 10A 原来是这样操作
+修改make\plutommi\mmi_app\下的三个文件：
+1）mmi_app.lis:此文件用来申明MMI所要编译的所有源文件，添加如下一行：
+plutommi\MMI\FirstApp\FirstAppSrc\FirstApp.c
+2）mmi_app.inc：此文件用来指明MMI所有头文件所在目录，同样添加：
+plutommi\MMI\FirstApp\FirstAppInc
+3）mmi_app.pth：此文件用来指明MMI所有源文件所在目录，添加：
+plutommi\MMI\FirstApp\FirstAppSrc
+
+4）在plutommi\Customer\ResGenerator\MakeFile文件中添加如下一行：
+-I "../../MMI/FirstApp/FirstAppInc"
+MTK6260上找不到上述三个文件，我看到网上有说修改mmi_app.mak文件，在SRC_LIST、INC_DIR、和SRC_PATH三个变量中分别添加上述三个文件，可是找了下项目没找到这个文件mmi_app.mak。
+
+那个打下指点下！谢谢！
