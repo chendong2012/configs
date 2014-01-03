@@ -38,3 +38,7 @@ plutommi\MMI\FirstApp\FirstAppSrc
 MTK6260上找不到上述三个文件，我看到网上有说修改mmi_app.mak文件，在SRC_LIST、INC_DIR、和SRC_PATH三个变量中分别添加上述三个文件，可是找了下项目没找到这个文件mmi_app.mak。
 
 那个打下指点下！谢谢！
+
+
+
+http://www.doc88.com/p-499509708254.html
