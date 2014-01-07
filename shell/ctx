@@ -5,3 +5,5 @@ sudo mount -t cifs //192.168.1.101/11BW1308MP_60D /home/chend/windows -o usernam
 formytest 2014年 01月 08日 星期三 12:24:17 CST
 text 2014年 01月 08日 星期三 12:28:54 CST
 test again 2014年 01月 08日 星期三 12:30:02 CST
+mytest Tue Jan  7 13:34:12 CST 2014
+mytest Tue Jan  7 13:35:04 CST 2014
