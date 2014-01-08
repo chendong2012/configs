@@ -3,3 +3,4 @@ aaa
 aaa-2014年 01月 08日 星期三 12:21:16 CST
 sudo mount -t cifs //192.168.1.101/11BW1308MP_60D /home/chend/windows -o username=user,password=user123456 2014年 01月 08日 星期三 12:22:18 CST
 formytest 2014年 01月 08日 星期三 12:24:17 CST
+text 2014年 01月 08日 星期三 12:28:54 CST
