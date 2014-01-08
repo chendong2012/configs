@@ -9,3 +9,4 @@ sudo mount -t cifs //192.168.1.101/11BW1308MP_60D /home/chend/windows -o usernam
 sudo mount -t cifs //192.168.1.101/11BW1308MP_60D /home/chend/windows -o username=user,password=user123456 2014年 01月 08日 星期三 19:49:30 CST
 mytest Tue Jan  7 13:34:12 CST 2014
 mytest Tue Jan  7 13:35:04 CST 2014
+mtk 的模块定义是在对应的make/模块下,就可以知道哪些要编译 2014年 01月 08日 星期三 22:20:56 CST
