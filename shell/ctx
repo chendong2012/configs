@@ -5,3 +5,4 @@ sudo mount -t cifs //192.168.1.101/11BW1308MP_60D /home/chend/windows -o usernam
 formytest 2014年 01月 08日 星期三 12:24:17 CST
 text 2014年 01月 08日 星期三 12:28:54 CST
 test again 2014年 01月 08日 星期三 12:30:02 CST
+sudo mount -t cifs //192.168.1.101/11BW1308MP_60D /home/chend/windows -o username=user,password=user123456 2014年 01月 08日 星期三 15:00:20 CST
