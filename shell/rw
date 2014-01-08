@@ -1,0 +1,9 @@
+#!/bin/bash
+dbpath=/opt/hub/configs/shell
+echo "$1 `date`" >> "$dbpath"/ctx
+
+cd $dbpath
+git pull
+git add ctx
+git commit -m update "$1"
+git push
