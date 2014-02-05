@@ -605,3 +605,16 @@ http://www.tuicool.com/articles/JRziMj
 包括时间同步，RFID 读二代身份证，等等
  http://www.tuicool.com/articles/IraYja
 http://www.tuicool.com/topics/10300145?st=0&lang=1&pn=1
+
+
+
+
+基于树莓派的SkyJack四轴无人机
+
+Admin 发表于 2013-12-11, 9:42 PM
+
+世界一直在不断地变化着，而在未来数十年，我们有望生活于一个科幻般的场景——那就是，到处飞翔着送货的无人机。不过，似乎没有多少人能联想到无人机被劫持的状况。现在，就有这么一款能够拦截其它无人机的飞行器——基于树莓派(Raspberry Pi)打造的SkyJack四轴无人机。
+SkyJack能够自主飞行，由黑客Samy Kamkar打造，采用了Parrot和Raspberry Pi的组合，附加了两个无线放大器和电池组。该飞行器能通过无线电控制，并通过一系列硬件"嗅探"出附近的Parrot飞行器，然后进行破坏。
+　　一旦无线连接被入侵，SkyJack就会接管其它无人机的摄像头和控制系统，为所欲为。如果觉得还不够劲，它还可以用笔记本电脑、Linux Box、或者其它设备进行连接。
+　　Mr. Kamkar已将全部细节和视频放到了GitHub和自己的网站上，感兴趣的网友可以前去围观。可以联想到的是，亚马逊的无人送货机又多了一道砍啊！ 
+https://github.com/samyk/skyjack/blob/master/README.md
