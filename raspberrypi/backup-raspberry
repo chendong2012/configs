@@ -1,0 +1,22 @@
+vote 47 down vote
+	
+
+If you are running linux then you can use the dd command to make a full backup of the image:
+
+dd if=/dev/sdx of=/path/to/image
+
+or for compression:
+
+dd if=/dev/sdx | gzip > /path/to/image.gz
+
+Where sdx is your SD card.
+
+To restore the backup you reverse the commands:
+
+dd if=/path/to/image of=/dev/sdx
+
+or when compressed:
+
+gzip -dc /path/to/image.gz | dd of=/dev/sdx 
+
+
