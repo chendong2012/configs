@@ -618,3 +618,7 @@ SkyJack能够自主飞行，由黑客Samy Kamkar打造，采用了Parrot和Raspb
 　　一旦无线连接被入侵，SkyJack就会接管其它无人机的摄像头和控制系统，为所欲为。如果觉得还不够劲，它还可以用笔记本电脑、Linux Box、或者其它设备进行连接。
 　　Mr. Kamkar已将全部细节和视频放到了GitHub和自己的网站上，感兴趣的网友可以前去围观。可以联想到的是，亚马逊的无人送货机又多了一道砍啊！ 
 https://github.com/samyk/skyjack/blob/master/README.md
+
+
+超强时区例子
+http://www.eeboard.com/bbs/thread-1382-1-1.html
