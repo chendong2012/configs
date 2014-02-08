@@ -40,6 +40,14 @@ sudo apt-get install mplayer
 修改:/etc/group
 然后重启
 
+mplayer 如何调节音量呢？
+mplayer -af volume=-15 一剪梅.mp3
+
+#mplayer -af volume=-10 *.mp3
+#volume 的范围可以是－２００到＋６０.　－２００是静音．　而＋６０是噪音．．．
+#我调－１０是让他小声一点点，不要影响我上QQ嘛．．．．
+
+
 经常　有一些是因为一般用户不能做的事，而root用户可以，就是因为一些
 权限或是组的问题
 
