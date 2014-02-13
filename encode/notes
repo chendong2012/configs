@@ -1,2 +1,5 @@
 这个文件是用来识别文件是什么编码的
 enca weather\?0751
+
+
+iconv -f GB2312 -t UTF-8 0751 > add
