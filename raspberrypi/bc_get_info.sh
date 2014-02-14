@@ -4,6 +4,9 @@ if [ "$2" == "" ]; then
 	exit
 fi
 
+if [ ! -e "$2" ]; then
+mkdir -p "$2"
+fi
 cd $2
 webaddr="http://61.135.159.21/cgi-bin/weather?""$1"
 name=`echo "$webaddr" | sed 's/.*\///g'`

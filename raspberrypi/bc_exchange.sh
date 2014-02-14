@@ -1,13 +1,15 @@
 #!/bin/bash
-if [ $1 -eq "" ]; then
+if [ "$1" == "" ]; then
 	echo "please input the dir for broadcast infos"
+	exit
 fi
 
-cd $1
+cd "$1"
 allitems=`ls`
 
+exit
 for item in $allitems
 do
-	/opt/hub/configs/raspberrypi/bc_output.sh "$item"
+	/home/xbian/bin/bc_output.sh "$item"
 	sleep 1
 done
