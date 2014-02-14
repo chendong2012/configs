@@ -155,3 +155,12 @@ sort -n -k5  -t P
 -k:表示按第５列来分析
 -t:表示列的分隔符
 
+下面的命令作用是：把a放到b下面去
+cp --parents -R a b
+
+
+
+
+
+有关命令行里面的一些方法，比如set
+http://www.cnblogs.com/stephen-liu74/archive/2011/12/15/2263916.html
