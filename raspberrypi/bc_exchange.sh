@@ -5,11 +5,11 @@ if [ "$1" == "" ]; then
 fi
 
 cd "$1"
-allitems=`ls`
+allitems=(`ls`)
+echo ${#allitems[*]}
+for ((i=0;i<${#allitems[*]};i++)) {
+	echo "item is ${allitems[$i]}"
 
-exit
-for item in $allitems
-do
-	/home/xbian/bin/bc_output.sh "$item"
+	bc_output.sh "${allitems[$i]}" "$1"
 	sleep 1
-done
+}

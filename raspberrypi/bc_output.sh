@@ -3,6 +3,7 @@ today="今天;"
 tomo="明天;"
 info=""
 
+cd "$2"
 for line in `cat "$1"`
 do
 	((i++))
@@ -23,5 +24,6 @@ do
 	fi
 
 done
-echo $info
-#speech.sh "$info"
+echo "$info"
+echo ++++++++++++++++++++++++++++++++
+speech.sh "$info"

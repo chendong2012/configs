@@ -18,4 +18,4 @@ wget "$webaddr"
 iconv -f GB2312 -t UTF-8 "$name" > temp
 rm -rf "$name"
 mv temp "$name"
-cat "$name"
+#cat "$name"
