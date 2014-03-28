@@ -1,0 +1,65 @@
+sudo systemctl start mysqld.service
+sudo systemctl enable mysqld.service
+
+
+/*查看当前用户下有几个数据库*/
+show databases;
+
+/*选择使用一个数据库*/
+usb test;
+
+/*查看当前这个数据库有几个表*/
+show tables;
+
+
+/*查看这个表中的所有记录*/
+select * from student;
+*表示所有的字段
+
+
+select age from student where fname='dong';
+where 对应字段为dong的.
+
+/*如何去插入一条记录*/
+INSERT INTO table_name
+VALUES (value1, value2,....)
+INSERT INTO table_name (column1, column2,...)
+	VALUES (value1, value2,....)
+
+insert into student (fname,age) values("dong",34);
+mysql_query("insert into student (fname,age) values("dong",34)");
+
+
+/*如何去建一个表出来*/
+命令：create table <表名> ( <字段名1> <类型1> [,..<字段名n> <类型n>]);
+
+例如，建立一个名为MyClass的表，
+字段名 	数字类型 	数据宽度 	是否为空 	是否主键 	自动增加 	默认值
+id 	int 	           4 		   否 	       primary key 	auto_increment 	 
+name 	char 	          20 	           否 	  	  	 
+sex 	int 	           4  	           否 	  	  	                          0
+degree 	double 	          16 	           是 	  	  	 
+
+
+create table MyClass(
+		> id int(4) not null primary key auto_increment,
+		> name char(20) not null,
+		> sex int(4) not null default '0',
+		> degree double(16,2));
+
+
+
+
+
+/********************************************************************************************/
+以root连接到服务器上后，可以添加新账户。下面的语句使用GRANT来设置四个新账户：
+
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'monty'@'localhost'
+    ->     IDENTIFIED BY 'some_pass' WITH GRANT OPTION;
+    mysql> GRANT ALL PRIVILEGES ON *.* TO 'monty'@'%'
+        ->     IDENTIFIED BY 'some_pass' WITH GRANT OPTION;
+	mysql> GRANT RELOAD,PROCESS ON *.* TO 'admin'@'localhost';
+	mysql> GRANT USAGE ON *.* TO 'dummy'@'localhost';
+	用GRANT语句创建的账户有下面的属性：
+
+	·         其中两个账户有相同的用户名monty和密码some_pass。两个账户均为超级用户账户，具有完全的权限可以做任何事情。一个账户 ('monty'@'localhost')只用于从本机连接时。另一个账户('monty'@'%')可用于从其它主机连接。 

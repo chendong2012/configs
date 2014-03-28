@@ -1,0 +1,68 @@
+
+linux安装运行dropbox(命令行)
+	(2012-09-05 16:29:43)
+	转载▼
+	标签：
+	linux
+	dropbox
+	杂谈
+		分类： linux
+		按官网提示安装
+		Install Dropbox via command line
+
+		The Dropbox daemon works fine on all 32-bit and 64-bit Linux servers. To install, run the following command in your Linux terminal.
+
+		32-bit:
+
+
+		cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86" | tar xzf -
+		        
+
+		64-bit:
+
+
+		cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+		        
+
+		Next, run the Dropbox daemon from the newly created .dropbox-dist folder.
+
+
+		~/.dropbox-dist/dropboxd
+
+		出现: https://www.dropbox.com/cli_link?host_id=XXXXXXXXXXXXXXXXXXX
+		将其复制到浏览器打开输入你的账号和密码就可以绑定机器了
+
+
+		后台运行
+
+
+		~/.dropbox-dist/dropboxd &
+
+		关掉同步：
+		killall dropbox
+
+		    编写一个定时任务同步脚本：
+		    vi backup.sh
+		        代码如下：
+#!/bin/sh
+			start() {
+				echo starting dropbox
+					/root/.dropbox-dist/dropboxd &
+			}
+stop() {
+	echo stoping dropbox
+		pkill dropbox
+}
+case "$1" in
+start)
+start
+;;
+stop)
+stop
+;;
+restart)
+stop
+start
+;;
+esac
+
