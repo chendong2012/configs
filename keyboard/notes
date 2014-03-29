@@ -1,0 +1,12 @@
+http://forums.opensuse.org/showthread.php/450727-How-to-change-or-disable-compose-key-in-OpenSuse-11-3
+compose key 
+http://forums.opensuse.org/showthread.php/450727-How-to-change-or-disable-compose-key-in-OpenSuse-11-3
+setxkbmap
+
+In /etc/X11 is a file named Xmodmap which contains examples for changing keys. Copy this file as .Xmodmap into your $HOME directory or create an empty file with that name.
+Add following line into that file:
+keysym Control_R = Control_R
+After next login Shift + Ctrl_R is not the compose key anymore. More info you can get with man xmodmap.
+It is a per user solution but it is enough for me. Could not find how to change it for whole system.
+
+Anyway, thanks for trying to help me. 
