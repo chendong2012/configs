@@ -1,0 +1,9 @@
+sudo yum -y install httpd
+sudo yum -y install subversion
+svnadmin create /home/user/svn-repo/uboot
+mkdir -p uboot-2010-06/build
+svn import /home/user/uboot-2010-06 file:///home/user/svn-repo/uboot --message "init uboot"
+
+http://wenku.baidu.com/link?url=Sqk5sqZQCceivtqaSOciFWcnMpAKE1FT3bh73YFqew8swY0wEpIenuUijzfvdlcPx0CzZeNzBa8MJ30JF2F0LIho-Jgy1D1CNW3QuJgjXcW
+
+http://www.ha97.com/4467.html
