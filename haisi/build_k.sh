@@ -11,8 +11,8 @@ if [ "$1" == "--help" ] || [ "$1" == "-h" ] || [ "$#" == "0" ]; then
 fi
 
 
-if [ ! -d linux-3.0.y ]; then
-	tar xzvf linux-3.0.y.tgz
+if [ ! -d kernel/linux-3.0.y ]; then
+	tar xzvf kernel/linux-3.0.y.tgz -C kernel/
 fi
 
 case "$1" in
@@ -27,7 +27,7 @@ full)
 	exit 1
 esac
 
-pushd linux-3.0.y
+pushd kernel/linux-3.0.y
 
 
 case "$2" in
@@ -35,23 +35,13 @@ case "$2" in
         make ARCH=arm "$compile" clean
 	;;
   r*)
-	echo "<======================  make ARCH=arm "$compile" -j 20  ==========================>"
         make ARCH=arm "$compile" -j 20
-
-	echo "make new step 3:"
-	echo "<======================  make ARCH=arm "$compile" uImage -j 20  ==========================>"
         make ARCH=arm "$compile" uImage -j 20
 	;; 	
   n*)
         make ARCH=arm "$compile" clean
-	echo "<======================  make ARCH=arm "$compile" $CHIP_KERNEL_CFG  ==========================>"
         make ARCH=arm "$compile" "$CHIP_KERNEL_CFG"
-
-	echo "<======================  make ARCH=arm "$compile" -j 20  ==========================>"
         make ARCH=arm "$compile" -j 20
-
-	echo "make new step 3:"
-	echo "<======================  make ARCH=arm "$compile" uImage -j 20  ==========================>"
         make ARCH=arm "$compile" uImage -j 20
 	;;
   menuconfig)
@@ -63,22 +53,23 @@ case "$2" in
         make ARCH=arm "$compile" menuconfig
 	;;
   touch)
-        find linux-3.0.y | xargs touch
+        find . | xargs touch
 	;;
   cpcfg)
   	if [ $1 == "mini" ]; then
-	echo "cp arch/arm/configs/hi3520d_mini_defconfig .config"
-	cp arch/arm/configs/hi3520d_mini_defconfig .config
+		echo "cp arch/arm/configs/hi3520d_mini_defconfig .config"
+		cp arch/arm/configs/hi3520d_mini_defconfig .config
 	fi
 
   	if [ $1 == "full" ]; then
-	echo "cp arch/arm/configs/hi3520d_full_defconfig .config"
-	cp arch/arm/configs/hi3520d_full_defconfig .config
+		echo "cp arch/arm/configs/hi3520d_full_defconfig .config"
+		cp arch/arm/configs/hi3520d_full_defconfig .config
 	fi
 	;;
 unpack)
 	popd
-	tar xzvf linux-3.0.y.tgz
+	rm -rf kernel/linux-3.0.y
+	tar xzvf kernel/linux-3.0.y.tgz -C kernel/
 	exit 1
 	;;
   *)
