@@ -8,13 +8,16 @@ cp dxt/toolchain/arm-hisiv200-linux/cross.install toolchain/arm-hisiv200-linux/c
 cp dxt/toolchain/arm-hisiv100nptl-linux/cross.install toolchain/arm-hisiv100nptl-linux/cross.install
 
 pushd toolchain/arm-hisiv100-linux
+chmod a+x ./cross.install
 ./cross.install
 popd
 
 pushd toolchain/arm-hisiv200-linux
+chmod a+x ./cross.install
 ./cross.install
 popd
 
 pushd toolchain/arm-hisiv100nptl-linux
+chmod a+x ./cross.install
 ./cross.install
 popd
