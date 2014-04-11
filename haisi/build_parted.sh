@@ -30,11 +30,11 @@ mkdir -p out/board_tools/parted/100/sbin
 mkdir -p out/board_tools/parted/100-nptl/sbin
 mkdir -p out/board_tools/parted/200/sbin
 
-cp tools/board_tools/parted-100/parted-3.0/bin/sbin/parted out/board_tools/parted/100/sbin/
-cp tools/board_tools/parted-100/parted-3.0/bin/sbin/partprobe  out/board_tools/parted/100/sbin/
+cp tools/board_tools/parted-100/bin/sbin/parted out/board_tools/parted/100/sbin/
+cp tools/board_tools/parted-100/bin/sbin/partprobe  out/board_tools/parted/100/sbin/
 
-cp tools/board_tools/parted-100-nptl/parted-3.0/bin/sbin/parted out/board_tools/parted/100-nptl/sbin/
-cp tools/board_tools/parted-100-nptl/parted-3.0/bin/sbin/partprobe  out/board_tools/parted/100-nptl/sbin/
+cp tools/board_tools/parted-100-nptl/bin/sbin/parted out/board_tools/parted/100-nptl/sbin/
+cp tools/board_tools/parted-100-nptl/bin/sbin/partprobe  out/board_tools/parted/100-nptl/sbin/
 
-cp tools/board_tools/parted-200/parted-3.0/bin/sbin/parted out/board_tools/parted/200/sbin/
-cp tools/board_tools/parted-200/parted-3.0/bin/sbin/partprobe  out/board_tools/parted/200/sbin/
+cp tools/board_tools/parted-200/bin/sbin/parted out/board_tools/parted/200/sbin/
+cp tools/board_tools/parted-200/bin/sbin/partprobe  out/board_tools/parted/200/sbin/

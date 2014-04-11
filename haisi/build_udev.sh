@@ -1,4 +1,5 @@
 #!/bin/bash
+. env.sh
 function create
 {
 	mkdir -p $1	
@@ -32,11 +33,11 @@ pushd tools/board_tools/udev-100-200
 make
 popd
 
-out_dir100=out/boardtools/udev/100/bin
-out_dir100nptl=out/boardtools/udev/100-nptl/bin
-out_dir200=out/boardtools/udev/200/bin
+out_dir100=out/board_tools/udev/100/bin
+out_dir100nptl=out/board_tools/udev/100-nptl/bin
+out_dir200=out/board_tools/udev/200/bin
 
-rm -rf out/boardtools/udev
+rm -rf out/board_tools/udev
 create $out_dir100 "udev-100-100"
 create $out_dir100nptl "udev-100-100-nptl"
 create $out_dir200 "udev-100-200"

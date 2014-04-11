@@ -1,4 +1,5 @@
 #!/bin/bash
+. env.sh
 MKBOOT="mkboot-hi3520d.sh"
 REG_INFO_BIN="reg_info_Hi3520D-bvt_No1_660_330_660_ddr_innerFEPHY.bin"
 REG_INFO_BIN1="reg_info_Hi3515A-bvt_No1_600_300_600_ddr_innerFEPHY.bin"
@@ -20,22 +21,23 @@ if [ ! -d uboot/u-boot-2010.06 ]; then
 	popd
 fi
 
-if [ ! -d pub/uboot ]; then
-	mkdir -p pub/uboot
+if [ ! -d out/uboot ]; then
+	mkdir -p out/uboot
 fi
 
-cp tools/pc_tools/uboot_tools/$MKBOOT pub/uboot/
-cp tools/pc_tools/uboot_tools/$REG_INFO_BIN pub/uboot/
-cp tools/pc_tools/uboot_tools/$REG_INFO_BIN1 pub/uboot/
+cp tools/pc_tools/uboot_tools/$MKBOOT out/uboot/
+cp tools/pc_tools/uboot_tools/$REG_INFO_BIN out/uboot/
+cp tools/pc_tools/uboot_tools/$REG_INFO_BIN1 out/uboot/
 
 case "$1" in
 n*)
 	pushd uboot/u-boot-2010.06
-	make -C ARCH=arm "$compile" "$CHIP_UBOOT_CFG"
+	echo $PWD
+	make ARCH=arm "$compile" "$CHIP_UBOOT_CFG"
 	make ARCH=arm "$compile" -j 20
-	cp u-boot.bin pub/uboot/
+	cp u-boot.bin ../../out/uboot/
 	popd
-	pushd pub/uboot
+	pushd out/uboot
 	chmod a+x ./$MKBOOT
 	./$MKBOOT $REG_INFO_BIN $REG_INFO_BIN1 $UBOOT_IMAGE_BIN
 	popd

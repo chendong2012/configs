@@ -1,4 +1,5 @@
 #!/bin/bash
+. env.sh
 
 function create
 {
@@ -9,11 +10,11 @@ function create
 	cp -af hie* $1
 }
 
-out_reg_tool100="$PWD/out/boardtools/reg_tool/100/bin"
-out_reg_tool100nptl="$PWD/out/boardtools/reg_tool/100-nptl/bin"
-out_reg_tool200="$PWD/out/boardtools/reg_tool/200/bin"
+out_reg_tool100="$PWD/out/board_tools/reg_tool/100/bin"
+out_reg_tool100nptl="$PWD/out/board_tools/reg_tool/100-nptl/bin"
+out_reg_tool200="$PWD/out/board_tools/reg_tool/200/bin"
 
-rm -rf out/boardtools/reg_tool
+rm -rf out/board_tools/reg_tool
 
 mkdir -p "$out_reg_tool100"
 mkdir -p "$out_reg_tool100nptl"
