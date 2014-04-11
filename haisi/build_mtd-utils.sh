@@ -1,4 +1,6 @@
 #!/bin/bash
+. ./env.sh
+
 function create
 {
 	mkdir -p $1	

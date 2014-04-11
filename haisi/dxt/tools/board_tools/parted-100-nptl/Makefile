@@ -5,7 +5,7 @@ all:
 	rm parted-3.0-100-nptl -rf;
 	tar -zxf parted-3.0-hisi-bvt.tar.gz;
 	mkdir -p $(TOOLS_DIR)/parted-3.0-100-nptl/bin/;
-	pushd $(TOOLS_DIR)/parted-3.0-100-nptl/;\
+	pushd $(TOOLS_DIR)/parted-3.0/;\
 		./configure --host=arm-linux --enable-static --disable-shared CC=$(OSDRV_CROSS)-gcc AR=$(OSDRV_CROSS)-ar LD=$(OSDRV_CROSS)-ld\
 		--disable-device-mapper --without-readline --prefix=$(TOOLS_DIR)/parted-3.0-100-nptl/bin > /dev/null;\
 		make -j 20 > /dev/null;make install > /dev/null;\

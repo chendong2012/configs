@@ -1,4 +1,5 @@
 #!/bin/bash
+. env.sh
 rm -rf out/boardtools/hifat
 
 mkdir -p out/boardtools/hifat/100/sbin

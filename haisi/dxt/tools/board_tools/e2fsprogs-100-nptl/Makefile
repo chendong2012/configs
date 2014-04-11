@@ -1,4 +1,4 @@
-OSDRV_CROSS=arm-hisiv100-linux
+OSDRV_CROSS=arm-hisiv100nptl-linux
 OSDRV_CROSS_CFLAGS=-march=armv7-a -mcpu=cortex-a9
 e2fdir=e2fsprogs-1.41.11
 

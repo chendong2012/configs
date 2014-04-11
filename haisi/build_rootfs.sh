@@ -1,4 +1,5 @@
 #!/bin/bash
+. env.sh
 OSDRV_DIR="."
 TOOLCHAIN_RUNTIME_LIB="armv7a_soft"
 

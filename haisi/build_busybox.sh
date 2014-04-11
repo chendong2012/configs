@@ -1,8 +1,12 @@
 #!/bin/bash
-
+. env.sh
 dir_nptl="busybox-1.16.1_nptl"
 dir_200="busybox-1.16.1_200"
 dir_nptl_mini="busybox-1.16.1_nptl_mini"
+
+outdir_nptl="100-nptl"
+outdir_nptl_mini="100-nptl_mini"
+outdir_200="200"
 
 BUSYBOX_CFG_nptl="busybox_cfg_godarm_nptl"
 BUSYBOX_CFG_200="busybox_cfg_godarm_v200"
@@ -26,14 +30,14 @@ function create
 	popd
 
 	make -C busybox/"$1" install
-	mkdir -p out/busybox/"$1"
-	cp -af busybox/"$1"/_install/* out/busybox/"$1"
+	mkdir -p out/busybox/"$3"
+	cp -af busybox/"$1"/_install/* out/busybox/"$3"
 }
 
 if [ ! -d out/busybox ]; then
 	mkdir -p out/busybox
 fi
 
-create $dir_nptl $BUSYBOX_CFG_nptl
-create $dir_nptl_mini $BUSYBOX_CFG_nptl_mini
-create $dir_200 $BUSYBOX_CFG_200
+create $dir_nptl $BUSYBOX_CFG_nptl $outdir_nptl
+create $dir_nptl_mini $BUSYBOX_CFG_nptl_mini $outdir_nptl_mini
+create $dir_200 $BUSYBOX_CFG_200 $outdir_200
