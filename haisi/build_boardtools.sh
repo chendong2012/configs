@@ -1,25 +1,32 @@
 #!/bin/bash
-OSDRV_DIR="."
-hiboardtools:
-        make -C $(OSDRV_DIR)/tools/board_tools/e2fsprogs
-        make -C $(OSDRV_DIR)/tools/board_tools/reg-tools-1.0.0 CHIP=$(CHIP)
-        make -C $(OSDRV_DIR)/tools/board_tools/parted
-        cp -af $(OSDRV_DIR)/tools/board_tools/reg-tools-1.0.0/btools $(OSDRV_DIR)/pub/$(PUB_ROOTFS)/bin
-        cp -af $(OSDRV_DIR)/tools/board_tools/reg-tools-1.0.0/him* $(OSDRV_DIR)/pub/$(PUB_ROOTFS)/bin
-        cp -af $(OSDRV_DIR)/tools/board_tools/reg-tools-1.0.0/hiddrs $(OSDRV_DIR)/pub/$(PUB_ROOTFS)/bin
-        cp -af $(OSDRV_DIR)/tools/board_tools/reg-tools-1.0.0/hil2s $(OSDRV_DIR)/pub/$(PUB_ROOTFS)/bin
-        cp -af $(OSDRV_DIR)/tools/board_tools/reg-tools-1.0.0/hie* $(OSDRV_DIR)/pub/$(PUB_ROOTFS)/bin
-        make -C $(OSDRV_DIR)/tools/board_tools/udev-100
-        cp $(OSDRV_DIR)/tools/board_tools/gdb/gdb-$(OSDRV_CROSS) $(OSDRV_DIR)/pub/bin/$(PUB_BOARD)
-        #make -C $(OSDRV_DIR)/tools/board_tools/gdb
-        find $(OSDRV_DIR)/tools/board_tools/mtd-utils/ -name 'configure' | xargs chmod +x
-        pushd $(OSDRV_DIR)/tools/board_tools/mtd-utils;make >/dev/null;popd
-        cp $(OSDRV_DIR)/tools/board_tools/mtd-utils/bin/arm/* $(OSDRV_DIR)/pub/bin/$(PUB_BOARD)
-        rm $(OSDRV_DIR)/pub/bin/$(PUB_BOARD)/ubi* -rf
-        cp $(OSDRV_DIR)/tools/board_tools/parted/parted-3.0/bin/sbin/parted $(OSDRV_DIR)/pub/bin/$(PUB_BOARD);
-        cp $(OSDRV_DIR)/tools/board_tools/parted/parted-3.0/bin/sbin/partprobe $(OSDRV_DIR)/pub/bin/$(PUB_BOARD);
-ifeq ($(CHIP),hi3520d)
-        cp $(OSDRV_DIR)/tools/board_tools/hifat/$(OSDRV_CROSS_LIB)/static/himount $(OSDRV_DIR)/pub/$(PUB_ROOTFS)/sbin
-        cp $(OSDRV_DIR)/tools/board_tools/hifat/$(OSDRV_CROSS_LIB)/static/libhimount_api.a $(OSDRV_DIR)/pub/$(PUB_ROOTFS)/lib
-endif
+mkdir -p out/e2fsprogs/bin_200
+mkdir -p out/e2fsprogs/bin_nptl
+cp dxt/tools/board_tools/e2fsprogs/Makefile tools/board_tools/e2fsprogs/Makefile 
+pushd tools/board_tools/e2fsprogs
+make
+popd
 
+rm -rf out/boardtools/e2fsprogs
+mkdir -p out/boardtools/e2fsprogs/100/bin
+mkdir -p out/boardtools/e2fsprogs/100-nptl/bin
+mkdir -p out/boardtools/e2fsprogs/200/bin
+
+cp tools/board_tools/e2fsprogs  tools/board_tools/e2fsprogs-100 -a
+cp tools/board_tools/e2fsprogs  tools/board_tools/e2fsprogs-100-nptl -a
+cp tools/board_tools/e2fsprogs  tools/board_tools/e2fsprogs-200 -a
+
+cp dxt/tools/board_tools/e2fsprogs-100/Makefile  	tools/board_tools/parted-100/ 
+cp dxt/tools/board_tools/e2fsprogs-100-nptl/Makefile 	tools/board_tools/parted-100-nptl/
+cp dxt/tools/board_tools/e2fsprogs-200/Makefile 	tools/board_tools/parted-100-nptl/
+
+pushd tools/board_tools/e2fsprogs-100
+make
+popd
+
+pushd tools/board_tools/e2fsprogs-100-nptl
+make
+popd
+
+pushd tools/board_tools/e2fsprogs-200
+make
+popd

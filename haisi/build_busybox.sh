@@ -1,24 +1,39 @@
 #!/bin/bash
-BUSYBOX_CFG="busybox_cfg_godarm_nptl"
-#BUSYBOX_CFG="busybox_cfg_godarm_v200"
-#BUSYBOX_CFG="busybox_cfg_hi3520d_nptl_mini"
+
+dir_nptl="busybox-1.16.1_nptl"
+dir_200="busybox-1.16.1_200"
+dir_nptl_mini="busybox-1.16.1_nptl_mini"
+
+BUSYBOX_CFG_nptl="busybox_cfg_godarm_nptl"
+BUSYBOX_CFG_200="busybox_cfg_godarm_v200"
+BUSYBOX_CFG_nptl_mini="busybox_cfg_hi3520d_nptl_mini"
+
+function create
+{
+	echo "build busybox......................."
+	if [ ! -d busybox/"$1" ]; then
+		tar xzf busybox/busybox-1.16.1.tgz -C busybox
+		echo "mv busybox-1.16.1 "$1""
+		mv busybox/busybox-1.16.1 busybox/"$1"
+	fi
+
+	cp dxt/busybox/"$1"/Makefile busybox/"$1"/Makefile
+
+	cp busybox/"$1"/"$2" busybox/"$1"/.config
+
+	pushd busybox/"$1"
+	make -j 20 >/dev/null
+	popd
+
+	make -C busybox/"$1" install
+	mkdir -p out/busybox/"$1"
+	cp -af busybox/"$1"/_install/* out/busybox/"$1"
+}
 
 if [ ! -d out/busybox ]; then
 	mkdir -p out/busybox
 fi
 
-echo "build busybox......................."
-if [ ! -d busybox/busybox-1.16.1 ]; then
-	tar xzf busybox/busybox-1.16.1.tgz -C busybox
-fi
-
-cp dxt/busybox/busybox-1.16.1/Makefile busybox/busybox-1.16.1/Makefile
-
-cp busybox/busybox-1.16.1/$BUSYBOX_CFG busybox/busybox-1.16.1/.config
-
-pushd busybox/busybox-1.16.1
-make -j 20 >/dev/null;
-popd
-
-make -C busybox/busybox-1.16.1 install
-cp -af busybox/busybox-1.16.1/_install/* out/busybox
+create $dir_nptl $BUSYBOX_CFG_nptl
+create $dir_nptl_mini $BUSYBOX_CFG_nptl_mini
+create $dir_200 $BUSYBOX_CFG_200
