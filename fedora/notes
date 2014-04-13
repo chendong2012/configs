@@ -16,3 +16,5 @@ $ locale-gen -en_US:en
 找不到libc的解决办法
 /usr/bin/ld: cannot find -lc
 sudo yum install -y glibc-static libstdc++-static
+
+http://blog.naaln.com/2013/08/do-you-want-after-you-install-fedora-19-gnome-thing/
