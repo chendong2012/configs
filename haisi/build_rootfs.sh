@@ -34,4 +34,10 @@ PUB_ROOTFS="100-nptl"
 OSDRV_CROSS="arm-hisiv100nptl-linux"
 TOOLCHAIN_RUNTIME_LIB_C="lib.uClibc.tgz"
 unpack
+
+PUB_ROOTFS="100-nptl_mini"
+OSDRV_CROSS="arm-hisiv100nptl-linux"
+TOOLCHAIN_RUNTIME_LIB_C="lib.uClibc.tgz"
+unpack
+
 echo "ok"
