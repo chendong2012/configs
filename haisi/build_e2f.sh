@@ -5,15 +5,15 @@ e2fname="e2fsprogs-1.41.11"
 function create
 {
 	mkdir -p $1	
-#	cp tools/board_tools/$2/e2fsprogs-1.41.11/inst/sbin/mkfs.ext2 $1
-#	cp tools/board_tools/$2/e2fsprogs-1.41.11/inst/sbin/mkfs.ext3 $1
-#	cp tools/board_tools/$2/e2fsprogs-1.41.11/inst/sbin/mkfs.ext4 $1
-#	cp tools/board_tools/$2/e2fsprogs-1.41.11/inst/sbin/mke2fs $1
+	cp tools/board_tools/$2/e2fsprogs-1.41.11/inst/sbin/mkfs.ext2 $1
+	cp tools/board_tools/$2/e2fsprogs-1.41.11/inst/sbin/mkfs.ext3 $1
+	cp tools/board_tools/$2/e2fsprogs-1.41.11/inst/sbin/mkfs.ext4 $1
+	cp tools/board_tools/$2/e2fsprogs-1.41.11/inst/sbin/mke2fs $1
 
-	cp tools/board_tools/$2/mkfs.ext2 $1
-	cp tools/board_tools/$2/mkfs.ext3 $1
-	cp tools/board_tools/$2/mkfs.ext4 $1
-	cp tools/board_tools/$2/mke2fs $1
+#	cp tools/board_tools/$2/mkfs.ext2 $1
+#	cp tools/board_tools/$2/mkfs.ext3 $1
+#	cp tools/board_tools/$2/mkfs.ext4 $1
+#	cp tools/board_tools/$2/mke2fs $1
 }
 
 rm -rf tools/board_tools/e2fsprogs-100
@@ -42,6 +42,7 @@ popd
 out_dir100="out/board_tools/e2fsprogs/100/bin"
 out_dir100nptl="out/board_tools/e2fsprogs/100-nptl/bin"
 out_dir200="out/board_tools/e2fsprogs/200/bin"
-create $out_dir100  e2fsprogs-100/pub/bin
-create $out_dir100nptl  e2fsprogs-100-nptl/pub/bin
-create $out_dir200  e2fsprogs-200/pub/bin
+
+create $out_dir100  e2fsprogs-100
+create $out_dir100nptl  e2fsprogs-100-nptl
+create $out_dir200  e2fsprogs-200

@@ -200,7 +200,7 @@ hi3520D_SDK_Vx.x.x.x 目录结构如下：
         mw.b 82000000 ff b00000
 
         tftp 0x82000000 rootfs_3520d_64k.jffs2
-
+tftp 0x82000000 100-nptl-64k.jffs2
         sf erase 500000 b00000
 
         sf write 82000000 500000 b00000
@@ -239,11 +239,9 @@ hi3520D_SDK_Vx.x.x.x 目录结构如下：
 
     # 设置网络
 
-    ifconfig eth0 hw ether xx:xx:xx:xx:xx:xx;
-
-    ifconfig eth0 xx.xx.xx.xx netmask xx.xx.xx.xx;
-
-    route add default gw xx.xx.xx.xx
+    ifconfig eth0 hw ether 8c:89:a5:1b:75:5a
+    ifconfig eth0 192.168.0.133 netmask 255.255.255.0
+    route add default gw 192.168.0.1
 
     # 然后ping一下其他机器，如无意外，网络将能正常工作。
 
@@ -256,6 +254,7 @@ hi3520D_SDK_Vx.x.x.x 目录结构如下：
     # 挂载NFS文件系统的操作命令：
 
     mount -t nfs -o nolock -o tcp xx.xx.xx.xx:/your-nfs-path /mnt
+mount -t nfs -o nolock -o tcp 192.168.0.133:/home/chend/test /mnt
 
     # 然后就可以在/mnt目录下访问服务器上的文件，并进行开发工作。
 
