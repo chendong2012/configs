@@ -10,7 +10,7 @@ compile_100="CROSS_COMPILE=arm-hisiv100-linux-"
 compile_100_nptl="CROSS_COMPILE=arm-hisiv100nptl-linux-"
 compile_200="CROSS_COMPILE=arm-hisiv200-linux-"
 
-help="Usage: $0 cfg {new|remake|r|n}"
+help="Usage: $0 cfg{new|remake|r|n}"
 
 if [ "$1" == "--help" ] || [ "$1" == "-h" ] || [ "$#" == "0" ]; then
 	echo $help
