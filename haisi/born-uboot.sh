@@ -50,3 +50,39 @@ echo "2. 上述步骤操作完成后,重启系统可以看到 U-boot 烧写成�
         sa
 4、启动新系统
     reset	# 重启进入新系统。
+
+
+uboot> printenv 
+
+baudrate=115200
+
+ipaddr=192.168.0.111 
+
+ethaddr=32:34:46:78:9A:DC 
+
+serverip=192.168.0.100 
+
+Environment size: 80/8188 bytes 
+
+2. Setenv 设置新的变量 
+
+如：
+
+uboot> setenv myboard AT91RM9200DK 
+
+uboot> saveenv
+
+uboot> printenv 
+
+baudrate=115200
+
+ipaddr=192.168.0.111 
+
+ethaddr=32:34:46:78:9A:DC 
+
+serverip=192.168.0.100
+
+myboard=AT91RM9200DK 
+
+
+    
