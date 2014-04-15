@@ -1,0 +1,110 @@
+1.下载tftp服务器、客户端tftp和守护进程xinetd三个包
+yum install xinetd tftp tftp-server
+／／xinetd.i386 2: 2.3.14-21.fc10
+／／tftp-0.49-1.fc10.i386.rpm
+／／tftp-server-0.49-1.fc10.i386.rpm
+2.配置vi /etc/xinetd.d/tftp
+修改server_args = -s /tftpboot -c，这里的-c一定要加上，否则只能下载不能上传！！！
+service tftp
+{
+disable = no
+socket_type = dgram
+protocol = udp
+wait = yes
+user = root
+server = /usr/sbin/in.tftpd
+server_args = -s /tftpboot -c
+per_source = 11
+cps = 100 2
+flags = IPv4
+}
+3.关闭防火墙
+4.建立tftp工作目录并修改属性（不修改属性会出现error）
+cd /
+mkdir tftpboot
+chmod 777 -R /tftpboot/
+5.开启服务，上传下载文件
+＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃
+我的配置过程中先后顺序和出现的问题如下：
+下载tftp服务客户端tftp和守护进程xinetd
+yum install xinetd
+yum install tftp tftp-server
+／／xinetd.i386 2:2.3.14-21.fc10
+／／tftp-0.49-1.fc10.i386.rpm
+／／tftp-server-0.49-1.fc10.i386.rpm
+关闭防火墙
+service xinetd restart
+Stopping xinetd: [ OK ]
+Starting xinetd: [ OK ]
+cd /
+mkdir tftpboot
+cd tftpboot
+cp /etc/inittab /tftpboot/
+tftp 172.18.1.90
+tftp> get inittab
+Transfer timed out.
+tftp>quit
+[root@localhost tftpboot]# netstat -a|grep tftp
+[root@localhost tftpboot]# ls
+inittab
+[root@localhost tftpboot]# touch aaa
+[root@localhost tftpboot]# ls
+aaa inittab
+[root@localhost tftpboot]# tftp 172.18.1.90
+tftp> get aaa
+Transfer timed out.
+tftp> quit
+不知何故出现“Transfer timed out.”的错误提示，想想没有修改tftp配置文件：
+[root@localhost tftpboot]# cd /etc/xinetd.d
+[root@localhost xinetd.d]# vi tftp
+修改保存：
+disable=no
+server_args=-s /tftpboot/ -c
+[root@localhost xinetd.d]# cd /
+[root@localhost /]# /etc/init.d/xinetd restart
+Stopping xinetd: [ OK ]
+Starting xinetd: [ OK ]
+[root@localhost /]# netstat -a | grep tftp
+udp 0 0 *:tftp *:*
+[root@localhost /]# tftp 172.18.1.90
+tftp> get aaa
+Error code 1: File not found
+tftp> get inittab
+Error code 1: File not found
+tftp> quit
+错误不一样了，以为需要安装tftpd服务器端，yum install tftpd没有源
+但这次想起来新建/tftpboot/目录时候没有对该目录权限进行修改，就一切ok了
+[root@localhost /]# chmod 777 -R /tftpboot/
+[root@localhost /]# tftp 172.18.1.90
+tftp> get aaa
+tftp> get inittab
+tftp> q
+[root@localhost /]# ls
+aaa boot etc inittab lost+found mnt proc sbin srv tftpboot usr
+bin dev home lib media opt root selinux sys tmp var
+／／根目录出现了aaa和inittab文件，下载成功！
+再来试试上传文件：
+[root@localhost /]# cd /tftpboot
+[root@localhost tftpboot]# ls
+aaa inittab
+[root@localhost tftpboot]# rm aaa
+rm: remove regular empty file `aaa'? y
+[root@localhost tftpboot]# ls
+inittab
+[root@localhost tftpboot]# tftp 172.18.1.90
+tftp> put aaa
+tftp: aaa: No such file or directory
+tftp> put aaa
+tftp: aaa: No such file or directory
+tftp> q
+[root@localhost tftpboot]# cd /
+[root@localhost /]# ls
+aaa boot etc inittab lost+found mnt proc sbin srv tftpboot usr
+bin dev home lib media opt root selinux sys tmp var
+[root@localhost /]# tftp 172.18.1.90
+tftp> put aaa
+tftp> q
+[root@localhost /]# cd /tftpboot
+[root@localhost tftpboot]# ls
+aaa inittab
+上传成功！
