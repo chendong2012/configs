@@ -12,4 +12,13 @@ if [ ! -d out/toolchain ]; then
 fi
 #sudo yum install ld-linux.so.2
 #sudo yum install libz.so.1
+
+
+
+cross=`cat ~/.bashrc | grep arm-hisiv`
+if [ "$cross" == "" ]; then
+echo "PATH=$PATH:$PWD/out/toolchain/arm-hisiv100-linux/target/bin:$PWD/out/toolchain/nptl/arm-hisiv100-linux/target/bin:$PWD/out/toolchain/arm-hisiv200-linux/target/bin:$PWD/out/pc_tools/bin" >> ~/.bashrc
+echo "export PATH" >> ~/.bashrc
+fi
+
 echo $PATH
