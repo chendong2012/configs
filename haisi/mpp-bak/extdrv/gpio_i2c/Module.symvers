@@ -1,0 +1,4 @@
+0x00000000	gpio_i2c2_read	/opt/sda5/priv/haisi/Hi3520D_V100R001C01SPC030/release/01.software/board/bakup/Hi3520D_SDK_V1.0.3.0/mpp/extdrv/gpio_i2c/gpioi2c	(unknown)
+0x00000000	gpio_i2c2_write	/opt/sda5/priv/haisi/Hi3520D_V100R001C01SPC030/release/01.software/board/bakup/Hi3520D_SDK_V1.0.3.0/mpp/extdrv/gpio_i2c/gpioi2c	(unknown)
+0x00000000	gpio_i2c_read	/opt/sda5/priv/haisi/Hi3520D_V100R001C01SPC030/release/01.software/board/bakup/Hi3520D_SDK_V1.0.3.0/mpp/extdrv/gpio_i2c/gpioi2c	(unknown)
+0x00000000	gpio_i2c_write	/opt/sda5/priv/haisi/Hi3520D_V100R001C01SPC030/release/01.software/board/bakup/Hi3520D_SDK_V1.0.3.0/mpp/extdrv/gpio_i2c/gpioi2c	(unknown)
