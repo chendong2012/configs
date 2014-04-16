@@ -1,0 +1,98 @@
+欢迎访问个人网站，阅读本文http://www.yandong.org/archives/365
+
+使用mount挂载ubuntu虚拟机所在的img文件的时候，执行：
+
+“sudo mount -o loop xxx.img /mnt/xxx”，
+
+系统提示：
+
+“mount: you must specify the filesystem type”
+
+加上”-t ext3″后仍然报错：
+mount : wrong fs type , bad option, bad superblock on /dev/loop2 ,
+  missing codepage or helper program, or other error
+  In some cases useful info is found in syslog - try
+  dmesg | tail or so
+
+首先，要说明一下的是，这情况是由于img文件的开头包含了mbr，以致于系统无法识别……img文件相当于一个包含操作系统的硬盘，而我们之需要挂载它的文件系统部分，所以需要绕过mbr。
+
+执行：fdisk -ul xxx.img，和显示一大堆信息，如：
+Disk 3059.img: 4294 MB, 4294967296 bytes
+255 heads, 63 sectors /track , 522 cylinders, total 8388608 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical /physical ): 512 bytes / 512 bytes
+I /O size (minimum /optimal ): 512 bytes / 512 bytes
+Disk identifier: 0x000bdbdc
+ 
+Device Boot Start End Blocks Id System
+3059.img1 * 63 7903979 3951958+ 83 Linux
+3059.img2 7903980 8385929 240975 5 Extended
+3059.img5 7904043 8385929 240943+ 82 Linux swap / Solaris
+
+看到这行，发现linux的文件系统是从第63块开始的，所以挂载的时候应该从这个地方开始挂载
+
+3059.img1 * 63 7903979 3951958+ 83 Linux
+
+由这条信息可以的出，扇区大小为512
+
+Units = sectors of 1 * 512 = 512 bytes
+
+所以我们需要从512*63出开始挂载
+
+最后执行：
+
+(sudo) mount -o loop,offset=32256  xxx.img /mnt/xxx……
+
+注：mount命令会根据文件系统的超级块（superblock）自动识别分区的文件系统类型；如果无法识别会读取并匹配/etc/filesystems中的条目
+
+
+
+
+
+有一种特殊的块设备叫loop device,这种loop device设备是通过影射操作系统上的正常的文件而形成的虚拟块设备。因为这种设备的存在，就为我们提供了一种创建一个存在于其他文件中的虚拟文件系统的机制.如果我们在使用一种集群需要使用其他盘符而没有新设备的时候可以采取这种方式，在虚拟机下需要设备的时候也可以采取这种方式：
+
+第一步：用dd命令创建一个文件，文件大小即为你的新设备的大小
+
+dd if=/dev/zero of=sd1 bs=4M count=1000
+
+这样就创建了一个大小为4G的文件sd1
+
+第二步：使用losetup命令创建一个loop 设备
+
+losetup /dev/loop0 sd1
+
+第三步：创建一个文件系统
+
+mkfs.ext3 /dev/loop0
+
+最后：如果要删除刚才创建的这些对象
+
+losetup -d /dev/loop0
+
+rm sd1
+
+默认情况下linux支持的loop设备是8个
+
+如果需要超过8个loop device，那么使用losetup命令的时候可能会遇到类似的错误 'no such device',这是因为超过了可用loop device设备的最大限制，依据你的Linux系统，可以通过修改
+
+/etc/modprobe.conf
+
+配置文件，增加如下参数的方式进行扩展
+
+options loop max_loop=20 --比如我增加到20个
+
+保存退出，如果要了马上生效的话，可以通过
+
+modprobe -v loop
+
+命令立即加载该模块。
+
+[root@vm11g dev]# cat /etc/modprobe.conf|grep loop
+
+options loop max_loop=20
+
+[root@vm11g dev]# modprobe -v loop
+
+insmod /lib/modules/2.6.39.4/kernel/drivers/block/loop.ko max_loop=20
+
+[root@vm11g dev]# ls -ltr /dev/loop*
