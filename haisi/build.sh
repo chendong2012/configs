@@ -6,7 +6,6 @@ echo "=======================build board tools========================"
 ./build_e2f.sh
 ./build_mtd-utils.sh
 ./build_gdb.sh
-./build_bt.sh
 ./build_parted.sh
 ./build_reg.sh
 ./build_udev.sh

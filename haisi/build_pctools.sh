@@ -14,3 +14,4 @@ make
 popd
 
 cp tools/pc_tools/squashfs4.2/mksquashfs out/pc_tools/bin/
+chmod a+x out/pc_tools/bin/*
